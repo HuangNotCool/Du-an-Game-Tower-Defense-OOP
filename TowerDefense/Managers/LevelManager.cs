@@ -13,25 +13,40 @@ namespace TowerDefense.Managers
             switch (levelId)
             {
                 case 1:
-                    // MAP 1: Đường chữ L đơn giản
-                    path.Add(new Point(0, 200));   // Xuất phát bên trái
-                    path.Add(new Point(400, 200)); // Đi thẳng đến giữa
-                    path.Add(new Point(400, 500)); // Rẽ xuống
-                    path.Add(new Point(800, 500)); // Rẽ phải về đích
+                    // MAP 1: Đường chữ L (Dễ)
+                    // Xuất phát trái -> Giữa -> Xuất hiện ở đáy
+                    path.Add(new Point(0, 200));
+                    path.Add(new Point(400, 200));
+                    path.Add(new Point(400, 500));
+                    path.Add(new Point(800, 500));
                     break;
 
                 case 2:
-                    // MAP 2: Đường chữ U (Khó hơn)
-                    path.Add(new Point(100, 0));   // Xuất phát từ trên
-                    path.Add(new Point(100, 400)); // Đi xuống
-                    path.Add(new Point(600, 400)); // Sang phải
-                    path.Add(new Point(600, 0));   // Đi lên về đích
+                    // MAP 2: Đường chữ U (Trung bình)
+                    // Trên xuống -> Sang phải -> Lên trên
+                    path.Add(new Point(150, 0));
+                    path.Add(new Point(150, 450));
+                    path.Add(new Point(650, 450));
+                    path.Add(new Point(650, 0));
+                    break;
+
+                case 3:
+                    // MAP 3: Đường Ziczac (Khó)
+                    // Đi như rắn săn mồi
+                    path.Add(new Point(0, 100));
+                    path.Add(new Point(200, 100));
+                    path.Add(new Point(200, 400));
+                    path.Add(new Point(400, 400));
+                    path.Add(new Point(400, 100));
+                    path.Add(new Point(600, 100));
+                    path.Add(new Point(600, 400));
+                    path.Add(new Point(800, 400));
                     break;
 
                 default:
-                    // Default map
-                    path.Add(new Point(0, 100));
-                    path.Add(new Point(800, 100));
+                    // Mặc định Map 1
+                    path.Add(new Point(0, 200));
+                    path.Add(new Point(800, 200));
                     break;
             }
 

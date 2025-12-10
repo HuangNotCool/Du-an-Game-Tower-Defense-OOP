@@ -55,6 +55,7 @@
     <Compile Include="Core\BaseEntity.cs" />
     <Compile Include="Core\IGameObject.cs" />
     <Compile Include="Data\SaveLoadSystem.cs" />
+    <Compile Include="Data\UserProfile.cs" />
     <Compile Include="Entities\Enemies\Enemy.cs" />
     <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Entities\Towers\ArcherTower.cs" />
@@ -72,6 +73,9 @@
     <Compile Include="Forms\GameLevels\GameLevel1.Designer.cs">
       <DependentUpon>GameLevel1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LevelSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,12 +92,19 @@
     <Compile Include="Forms\Reports\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\ShopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ShopForm.Designer.cs">
+      <DependentUpon>ShopForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Managers\HighScoreManager.cs" />
     <Compile Include="Managers\HistoryManager.cs" />
     <Compile Include="Managers\LevelManager.cs" />
     <Compile Include="Managers\ResourceManager.cs" />
     <Compile Include="Managers\SkillManager.cs" />
+    <Compile Include="Managers\SoundManager.cs" />
     <Compile Include="Managers\WaveManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

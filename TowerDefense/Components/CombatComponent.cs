@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using TowerDefense.Entities.Enemies;
-using TowerDefense.Entities.Enemies;
 
 namespace TowerDefense.Components
 {
     public class CombatComponent
     {
-        // ... (Giữ nguyên các biến cũ: _range, _reloadTime, _currentCooldown) ...
         private float _range;
         private float _reloadTime;
         private float _currentCooldown = 0;
+
+        // Cho phép đọc Range từ bên ngoài (để vẽ vòng tròn tầm bắn)
+        public float Range => _range;
 
         public CombatComponent(float range, float reloadTime)
         {
@@ -24,31 +25,38 @@ namespace TowerDefense.Components
         }
 
         public bool CanShoot() => _currentCooldown <= 0;
+
         public void ResetCooldown() => _currentCooldown = _reloadTime;
 
-        // --- CODE MỚI THÊM ---
-
-        // Hàm tìm mục tiêu: Chọn con quái nào gần Base nhất (hoặc đầu danh sách) trong tầm bắn
+        // --- HÀM TÌM MỤC TIÊU (Trả về Enemy object) ---
         public Enemy FindTarget(List<Enemy> enemies, PointF shooterPos)
         {
-            // Duyệt qua tất cả quái đang sống
+            Enemy bestTarget = null;
+            float minDistanceSqr = float.MaxValue; // Tìm con gần nhất (hoặc thay đổi logic tùy thích)
+
             foreach (var enemy in enemies)
             {
                 if (!enemy.IsActive) continue;
 
-                // Tính khoảng cách
                 float dx = enemy.X - shooterPos.X;
                 float dy = enemy.Y - shooterPos.Y;
                 float distSqr = dx * dx + dy * dy;
 
-                // Nếu trong tầm bắn (dùng bình phương để tối ưu)
+                // Kiểm tra trong tầm bắn
                 if (distSqr <= _range * _range)
                 {
-                    return enemy; // Trả về ngay con đầu tiên tìm thấy (đơn giản nhất)
-                    // Sau này sẽ nâng cấp thuật toán chọn con "nguy hiểm nhất"
+                    // Logic ưu tiên: Bắn con gần tháp nhất
+                    if (distSqr < minDistanceSqr)
+                    {
+                        minDistanceSqr = distSqr;
+                        bestTarget = enemy;
+                    }
+
+                    // Logic thay thế (Bắn con đi xa nhất trên map):
+                    // return enemy; // Trả về con đầu tiên trong list (thường là con ra trước)
                 }
             }
-            return null; // Không tìm thấy ai
+            return bestTarget;
         }
     }
 }

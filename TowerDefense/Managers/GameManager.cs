@@ -35,7 +35,7 @@ namespace TowerDefense.Managers
         private GameManager() { }
 
         // --- HÀM KHỞI TẠO GAME ---
-        public void StartGame()
+        public void StartGame(int levelId = 1)
         {
             // 1. Xóa sạch dữ liệu cũ
             Enemies.Clear();
@@ -43,16 +43,16 @@ namespace TowerDefense.Managers
             Projectiles.Clear();
 
             // 2. Reset chỉ số người chơi
-            PlayerMoney = 500; // Tiền khởi điểm
-            PlayerLives = 20;  // Mạng khởi điểm
+            PlayerMoney = 500;
+            PlayerLives = 20;
 
-            // 3. Load Map (Ví dụ load Map 1)
-            CurrentMapPath = LevelMgr.LoadLevelPath(1);
+            // 3. Load Map theo ID được truyền vào
+            // (Đảm bảo bạn đã có LevelMgr.LoadLevelPath từ các bước trước)
+            CurrentMapPath = LevelMgr.LoadLevelPath(levelId);
 
-            // Lưu ý: Chúng ta KHÔNG gọi WaveMgr.StartNextWave() ở đây
-            // để chờ người chơi bấm nút "START WAVE" trên giao diện.
+            // Reset Wave Manager
+            WaveMgr = new WaveManager();
         }
-
         // --- VÒNG LẶP LOGIC (UPDATE) ---
         public void Update(float deltaTime)
         {
