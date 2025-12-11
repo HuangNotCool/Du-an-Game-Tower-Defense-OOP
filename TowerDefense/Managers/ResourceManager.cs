@@ -7,24 +7,37 @@ namespace TowerDefense.Managers
 {
     public static class ResourceManager
     {
-        // Dictionary để lưu trữ ảnh đã load (Cache)
         public static Dictionary<string, Image> Images = new Dictionary<string, Image>();
-
-        // Đường dẫn gốc tới thư mục Assets
-        // Cách lấy đường dẫn này hoạt động cả khi chạy Debug lẫn Release
         private static string _basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Assets\Images");
 
         public static void LoadResources()
         {
-            // Tải ảnh Tháp
-            LoadImage("Archer", "archer.png");
-            LoadImage("Cannon", "cannon.png");
-
-            // Tải ảnh Quái
-            LoadImage("Enemy", "enemy.png");
-
-            // Tải ảnh Nền (nếu có)
+            // 1. Load các ảnh cơ bản (UI, Nền)
             LoadImage("Grass", "grass.png");
+
+            // 2. TỰ ĐỘNG LOAD TẤT CẢ ẢNH TRONG THƯ MỤC
+            // (Yêu cầu tên file ảnh phải trùng với tên trong Config. VD: "Slime.png", "Archer.png")
+            if (Directory.Exists(_basePath))
+            {
+                string[] files = Directory.GetFiles(_basePath, "*.png");
+                foreach (string file in files)
+                {
+                    string fileName = Path.GetFileName(file);
+                    string key = Path.GetFileNameWithoutExtension(file); // Slime.png -> Key: Slime
+
+                    // Chỉ load nếu chưa có trong dictionary
+                    if (!Images.ContainsKey(key))
+                    {
+                        LoadImage(key, fileName);
+                    }
+                }
+            }
+
+            // 3. Load thủ công các loại đạn (nếu tên file khác key)
+            // Nếu bạn đặt tên file là Arrow.png, Bomb.png thì không cần dòng này nữa
+            if (!Images.ContainsKey("Arrow")) LoadImage("Arrow", "arrow.png");
+            if (!Images.ContainsKey("Bomb")) LoadImage("Bomb", "bomb.png");
+            if (!Images.ContainsKey("Ice")) LoadImage("Ice", "ice_ball.png"); // Ví dụ
         }
 
         private static void LoadImage(string key, string fileName)
@@ -36,29 +49,15 @@ namespace TowerDefense.Managers
                 {
                     Images[key] = Image.FromFile(fullPath);
                 }
-                else
-                {
-                    // Nếu không tìm thấy ảnh, tạo một ảnh màu tạm để không crash game
-                    Bitmap bmp = new Bitmap(64, 64);
-                    using (Graphics g = Graphics.FromImage(bmp))
-                    {
-                        g.Clear(Color.Magenta); // Màu hồng báo lỗi
-                        g.DrawString(key, new Font("Arial", 8), Brushes.Black, 0, 0);
-                    }
-                    Images[key] = bmp;
-                }
+                // Không tạo ảnh lỗi màu hồng ở đây nữa để tránh spam log
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi tải ảnh {fileName}: {ex.Message}");
-            }
+            catch { }
         }
 
-        // Hàm lấy ảnh an toàn
         public static Image GetImage(string key)
         {
             if (Images.ContainsKey(key)) return Images[key];
-            return null;
+            return null; // Trả về null để Logic Render tự vẽ hình fallback
         }
     }
 }

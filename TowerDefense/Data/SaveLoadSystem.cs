@@ -1,40 +1,37 @@
 ﻿using System.IO;
-using Newtonsoft.Json; // Cần thư viện vừa cài
+using System.Linq; // Cần dùng Linq để tìm ID tháp
+using Newtonsoft.Json;
 using TowerDefense.Managers;
 using TowerDefense.Entities.Towers;
+using TowerDefense.Configs; // Để tra cứu GameConfig
 
 namespace TowerDefense.Data
 {
     public static class SaveLoadSystem
     {
-        private static string _filePath = "savegame.json"; // File nằm cùng chỗ với file .exe
+        private static string _filePath = "savegame.json";
 
         public static void SaveGame()
         {
-            // 1. Gom dữ liệu từ GameManager vào SaveData
             var data = new GameSaveData
             {
                 Money = GameManager.Instance.PlayerMoney,
                 Lives = GameManager.Instance.PlayerLives,
                 CurrentWave = GameManager.Instance.WaveMgr.CurrentWave,
-                LevelId = 1 // Tạm thời hardcode map 1
+                LevelId = 1 // Tạm hardcode, hoặc lấy từ GameManager nếu có biến lưu LevelId
             };
 
-            // 2. Lưu danh sách tháp
             foreach (var tower in GameManager.Instance.Towers)
             {
-                // Xác định loại tháp dựa trên tên class hoặc thuộc tính Name
-                string type = (tower is ArcherTower) ? "Archer" : "Cannon";
-
+                // SỬA: Lấy trực tiếp Name của tháp ("Archer", "Cannon"...)
                 data.Towers.Add(new TowerData
                 {
-                    Type = type,
+                    Type = tower.Name,
                     X = tower.X,
                     Y = tower.Y
                 });
             }
 
-            // 3. Ghi ra file JSON
             string json = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(_filePath, json);
         }
@@ -43,34 +40,40 @@ namespace TowerDefense.Data
         {
             if (!File.Exists(_filePath)) return;
 
-            // 1. Đọc file
             string json = File.ReadAllText(_filePath);
             var data = JsonConvert.DeserializeObject<GameSaveData>(json);
-
             if (data == null) return;
 
-            // 2. Khôi phục dữ liệu vào GameManager
-            GameManager.Instance.StartGame(); // Reset game trước
+            // Reset Game
+            GameManager.Instance.StartGame(data.LevelId);
 
+            // Khôi phục chỉ số
             GameManager.Instance.PlayerMoney = data.Money;
             GameManager.Instance.PlayerLives = data.Lives;
 
-            // Khôi phục Wave (Hack nhẹ vào WaveManager)
-            // Bạn cần thêm hàm SetWave vào WaveManager nếu muốn chuẩn, 
-            // hoặc tạm thời gán thủ công nếu biến là public.
-            // Ở đây ta giả sử đã Load lại đúng Wave.
+            // Khôi phục Wave (Cần hack nhẹ biến CurrentWave trong WaveManager nếu nó là private set)
+            // Hoặc tạo hàm SetWave trong WaveManager. 
+            // Tạm thời ta bỏ qua việc set lại Wave chính xác để tránh lỗi access modifier, 
+            // hoặc bạn cần sửa WaveManager: public int CurrentWave { get; set; }
 
-            // 3. Khôi phục Tháp
+            // Khôi phục Tháp
             foreach (var tData in data.Towers)
             {
-                if (tData.Type == "Archer")
+                // Tìm ID tháp dựa trên Tên (Type)
+                int typeId = 0; // Mặc định là 0 (Archer)
+
+                for (int i = 0; i < GameConfig.Towers.Length; i++)
                 {
-                    GameManager.Instance.Towers.Add(new ArcherTower(tData.X, tData.Y));
+                    if (GameConfig.Towers[i].Name == tData.Type)
+                    {
+                        typeId = i;
+                        break;
+                    }
                 }
-                else if (tData.Type == "Cannon")
-                {
-                    GameManager.Instance.Towers.Add(new CannonTower(tData.X, tData.Y));
-                }
+
+                // Tạo tháp mới bằng ID (Constructor chuẩn Data-Driven)
+                var newTower = new Tower(tData.X, tData.Y, typeId);
+                GameManager.Instance.Towers.Add(newTower);
             }
         }
     }

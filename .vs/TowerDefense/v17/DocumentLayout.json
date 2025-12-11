@@ -3,80 +3,176 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\forms\\levelselectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\levelselectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\levelselectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\forms\\levelselectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\levelselectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\levelselectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\towers\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\towers\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\managers\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\components\\combatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\components\\combatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\components\\movementcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\components\\movementcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\forms\\gamelevels\\gamelevel1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\configs\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\configs\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\utils\\gamebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\utils\\gamebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\utils\\gamebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\utils\\gamebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.input.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.input.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\assets\\images\\snow.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\assets\\images\\snow.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\assets\\images\\grass.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\assets\\images\\grass.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\assets\\images\\cannon.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\assets\\images\\cannon.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\shopform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\shopform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\data\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\data\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\reports\\bestiaryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\reports\\bestiaryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\configs\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\configs\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\utils\\prompt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\utils\\prompt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\wavemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\wavemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\towers\\archertower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\towers\\archertower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\highscoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\highscoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\components\\combatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\components\\combatcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|c:\\users\\admin\\source\\repos\\towerdefense\\towerdefense\\data\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\data\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\skillmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\skillmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\floatingtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\floatingtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\towers\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\towers\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\mainmenuform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\mainmenuform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\victoryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\victoryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.render.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.render.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.input.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.input.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gameoverform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gameoverform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\resourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\resourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\data\\gamesavedata.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\data\\gamesavedata.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\data\\saveloadsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\data\\saveloadsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.render.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.render.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\assets\\images\\arrow.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\assets\\images\\arrow.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\assets\\images\\bomb.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\assets\\images\\bomb.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\components\\movementcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\components\\movementcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\shopform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\reports\\historyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -85,18 +181,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\historymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\historymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\reports\\bestiaryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\reports\\bestiaryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\highscoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\highscoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\reports\\highscoreform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -111,40 +195,12 @@
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\data\\saveloadsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\data\\saveloadsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\data\\gamesavedata.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\data\\gamesavedata.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\resourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\resourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\assets\\images\\enemy.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\assets\\images\\enemy.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\assets\\images\\cannon.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\assets\\images\\cannon.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\managers\\wavemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\managers\\wavemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\entities\\towers\\cannontower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\entities\\towers\\cannontower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\forms\\gamelevels\\gamelevel1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\forms\\gamelevels\\gamelevel1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|solutionrelative:towerdefense\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C45C60B2-59E8-4267-9039-498C7A7FC597}|TowerDefense\\TowerDefense.csproj|C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\towerdefense\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -174,7 +230,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GameLevel1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAowHMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T04:05:52.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameButton.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Utils\\GameButton.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Utils\\GameButton.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Utils\\GameButton.cs",
+              "RelativeToolTip": "TowerDefense\\Utils\\GameButton.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAA7wJ4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T13:37:54.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "LevelManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\LevelManager.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Managers\\LevelManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\LevelManager.cs",
+              "RelativeToolTip": "TowerDefense\\Managers\\LevelManager.cs",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAowIcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T04:15:40.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "LevelSelectForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\LevelSelectForm.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Forms\\LevelSelectForm.cs",
@@ -186,59 +281,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Projectile.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Projectile.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Projectile.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Projectile.cs",
-              "RelativeToolTip": "TowerDefense\\Entities\\Projectile.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAAwDsAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:08:15.046Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SoundManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SoundManager.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Managers\\SoundManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SoundManager.cs",
-              "RelativeToolTip": "TowerDefense\\Managers\\SoundManager.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAAwDcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T06:48:37.202Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "LevelSelectForm.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\LevelSelectForm.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Forms\\LevelSelectForm.cs",
               "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\LevelSelectForm.cs",
               "RelativeToolTip": "TowerDefense\\Forms\\LevelSelectForm.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAAwFMAAAABAAAA",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAowGYAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T06:25:25.608Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainMenuForm.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\MainMenuForm.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs",
-              "RelativeToolTip": "TowerDefense\\Forms\\MainMenuForm.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAYwDMAAAAOAAAA",
+              "DocumentIndex": 5,
+              "Title": "GameLevel1.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAAC4AAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:37:09.033Z",
+              "WhenOpened": "2025-12-10T04:02:53.231Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 21,
               "Title": "CombatComponent.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Components\\CombatComponent.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Components\\CombatComponent.cs",
@@ -246,250 +315,174 @@
               "RelativeToolTip": "TowerDefense\\Components\\CombatComponent.cs",
               "ViewState": "AQIAACIAAAAAAAAAAAAAwD0AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T03:58:59.515Z",
+              "WhenOpened": "2025-12-10T03:58:59.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameButton.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Utils\\GameButton.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Utils\\GameButton.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Utils\\GameButton.cs [Design]",
+              "RelativeToolTip": "TowerDefense\\Utils\\GameButton.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T02:59:41.968Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "grass.png",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\grass.png",
+              "RelativeDocumentMoniker": "TowerDefense\\Assets\\Images\\grass.png",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\grass.png",
+              "RelativeToolTip": "TowerDefense\\Assets\\Images\\grass.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-11T01:26:46.992Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "MovementComponent.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Components\\MovementComponent.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Components\\MovementComponent.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Components\\MovementComponent.cs",
-              "RelativeToolTip": "TowerDefense\\Components\\MovementComponent.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAAwD0AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T03:56:29.847Z",
+              "Title": "Snow.png",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\Snow.png",
+              "RelativeDocumentMoniker": "TowerDefense\\Assets\\Images\\Snow.png",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\Snow.png",
+              "RelativeToolTip": "TowerDefense\\Assets\\Images\\Snow.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-11T01:27:03.493Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Tower.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\Tower.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Towers\\Tower.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\Tower.cs",
-              "RelativeToolTip": "TowerDefense\\Entities\\Towers\\Tower.cs",
-              "ViewState": "AQIAAEMAAAAAAAAAAAAewFAAAAAJAAAA",
+              "DocumentIndex": 6,
+              "Title": "GameLevel1.Input.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs",
+              "ViewState": "AQIAABYBAAAAAAAAAAAowDIBAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T03:59:32.232Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GameLevel1.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
-              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
-              "ViewState": "AQIAAHEAAAAAAAAAAAAAwIMAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:02:53.231Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Enemy.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Enemies\\Enemy.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Enemies\\Enemy.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Enemies\\Enemy.cs",
-              "RelativeToolTip": "TowerDefense\\Entities\\Enemies\\Enemy.cs",
-              "ViewState": "AQIAAIgAAAAAAAAAAAAAwKMAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T03:59:18.972Z",
+              "WhenOpened": "2025-12-10T12:09:02.838Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "GameLevel1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
-              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Designer.cs",
-              "ViewState": "AQIAAI0AAAAAAAAAAAAAAKYAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:05:52.961Z",
+              "Title": "Cannon.png",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\Cannon.png",
+              "RelativeDocumentMoniker": "TowerDefense\\Assets\\Images\\Cannon.png",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\Cannon.png",
+              "RelativeToolTip": "TowerDefense\\Assets\\Images\\Cannon.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-10T04:56:12.492Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "GameConstants.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Configs\\GameConstants.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Configs\\GameConstants.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Configs\\GameConstants.cs",
-              "RelativeToolTip": "TowerDefense\\Configs\\GameConstants.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
+              "Title": "MainMenuForm.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\MainMenuForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\MainMenuForm.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAB4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T03:55:33.284Z",
+              "WhenOpened": "2025-12-10T05:37:09.033Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\GameManager.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Managers\\GameManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\GameManager.cs",
-              "RelativeToolTip": "TowerDefense\\Managers\\GameManager.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAqwDYAAAAJAAAA",
+              "Title": "ShopForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.Designer.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\ShopForm.Designer.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.Designer.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\ShopForm.Designer.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAgwCYAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T03:59:48.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ArcherTower.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\ArcherTower.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Towers\\ArcherTower.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\ArcherTower.cs",
-              "RelativeToolTip": "TowerDefense\\Entities\\Towers\\ArcherTower.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAAACkAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:29:55.129Z",
+              "WhenOpened": "2025-12-10T16:34:34.03Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "LevelManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\LevelManager.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Managers\\LevelManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\LevelManager.cs",
-              "RelativeToolTip": "TowerDefense\\Managers\\LevelManager.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAAwDcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:15:40.306Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ShopForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\ShopForm.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.cs [Design]",
-              "RelativeToolTip": "TowerDefense\\Forms\\ShopForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T06:04:25.005Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
               "Title": "ShopForm.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Forms\\ShopForm.cs",
               "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.cs",
               "RelativeToolTip": "TowerDefense\\Forms\\ShopForm.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAYwGQAAAABAAAA",
+              "ViewState": "AQIAALsAAAAAAAAAAAAowNcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T06:04:33.942Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 14,
               "Title": "UserProfile.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Data\\UserProfile.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Data\\UserProfile.cs",
               "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Data\\UserProfile.cs",
               "RelativeToolTip": "TowerDefense\\Data\\UserProfile.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAwDAAAAABAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowDYAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T06:03:58.571Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 15,
               "Title": "BestiaryForm.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\BestiaryForm.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Forms\\Reports\\BestiaryForm.cs",
               "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\BestiaryForm.cs",
               "RelativeToolTip": "TowerDefense\\Forms\\Reports\\BestiaryForm.cs",
-              "ViewState": "AQIAAFsAAAAAAAAAAAAAwHYAAAABAAAA",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAowMEAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:39:25.602Z"
+              "WhenOpened": "2025-12-10T05:39:25.602Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "HistoryManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\HistoryManager.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Managers\\HistoryManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\HistoryManager.cs",
-              "RelativeToolTip": "TowerDefense\\Managers\\HistoryManager.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAwC0AAAABAAAA",
+              "DocumentIndex": 16,
+              "Title": "GameConstants.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Configs\\GameConstants.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Configs\\GameConstants.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Configs\\GameConstants.cs",
+              "RelativeToolTip": "TowerDefense\\Configs\\GameConstants.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAAAYwFsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:39:46.917Z"
+              "WhenOpened": "2025-12-10T03:55:33.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Prompt.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Utils\\Prompt.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Utils\\Prompt.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Utils\\Prompt.cs",
+              "RelativeToolTip": "TowerDefense\\Utils\\Prompt.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAswBMAAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T11:31:48.785Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 18,
-              "Title": "SkillManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SkillManager.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Managers\\SkillManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SkillManager.cs",
-              "RelativeToolTip": "TowerDefense\\Managers\\SkillManager.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAAwDQAAAABAAAA",
+              "Title": "WaveManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\WaveManager.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Managers\\WaveManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\WaveManager.cs",
+              "RelativeToolTip": "TowerDefense\\Managers\\WaveManager.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAswGQAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:46:16.585Z"
+              "WhenOpened": "2025-12-10T04:11:29.633Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "HistoryForm.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HistoryForm.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\Reports\\HistoryForm.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HistoryForm.cs",
-              "RelativeToolTip": "TowerDefense\\Forms\\Reports\\HistoryForm.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAYwB8AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:40:11.833Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "MainMenuForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\MainMenuForm.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs [Design]",
-              "RelativeToolTip": "TowerDefense\\Forms\\MainMenuForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:37:01.739Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "HighScoreForm.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
-              "RelativeToolTip": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAwB8AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:36:02.809Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "HighScoreForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs [Design]",
-              "RelativeToolTip": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T05:35:57.979Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 20,
               "Title": "HighScoreManager.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\HighScoreManager.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Managers\\HighScoreManager.cs",
@@ -501,43 +494,316 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\GameManager.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Managers\\GameManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\GameManager.cs",
+              "RelativeToolTip": "TowerDefense\\Managers\\GameManager.cs",
+              "ViewState": "AQIAAN0AAAAAAAAAAAAswO4AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T03:59:48.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SoundManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SoundManager.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Managers\\SoundManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SoundManager.cs",
+              "RelativeToolTip": "TowerDefense\\Managers\\SoundManager.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAwDcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T06:48:37.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "SkillManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SkillManager.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Managers\\SkillManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\SkillManager.cs",
+              "RelativeToolTip": "TowerDefense\\Managers\\SkillManager.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAwDQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T05:46:16.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Projectile.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Projectile.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Projectile.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Projectile.cs",
+              "RelativeToolTip": "TowerDefense\\Entities\\Projectile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T04:08:15.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "FloatingText.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\FloatingText.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Entities\\FloatingText.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\FloatingText.cs",
+              "RelativeToolTip": "TowerDefense\\Entities\\FloatingText.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T11:24:21.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Enemy.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Enemies\\Enemy.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Enemies\\Enemy.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Enemies\\Enemy.cs",
+              "RelativeToolTip": "TowerDefense\\Entities\\Enemies\\Enemy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAPcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T03:59:18.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Tower.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\Tower.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Towers\\Tower.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\Tower.cs",
+              "RelativeToolTip": "TowerDefense\\Entities\\Towers\\Tower.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAMoAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T03:59:32.232Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 28,
+              "Title": "MainMenuForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.Designer.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\MainMenuForm.Designer.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.Designer.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\MainMenuForm.Designer.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAQwCYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T16:40:24.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "MainMenuForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\MainMenuForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\MainMenuForm.cs [Design]",
+              "RelativeToolTip": "TowerDefense\\Forms\\MainMenuForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T05:37:01.739Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "GameLevel1.Render.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAswHgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T12:08:37.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "VictoryForm.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\VictoryForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\VictoryForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\VictoryForm.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\VictoryForm.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAswDcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T16:45:55.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "GameLevel1.Input.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs [Design]",
+              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Input.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T12:09:38.156Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "GameOverForm.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameOverForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameOverForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameOverForm.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\GameOverForm.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAswEQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T16:39:14.182Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Form1.Designer.cs",
+              "RelativeToolTip": "TowerDefense\\Form1.Designer.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwA0AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T04:05:47.79Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ResourceManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\ResourceManager.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Managers\\ResourceManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\ResourceManager.cs",
+              "RelativeToolTip": "TowerDefense\\Managers\\ResourceManager.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAgwD4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T04:44:22.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
               "Title": "GameSaveData.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Data\\GameSaveData.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Data\\GameSaveData.cs",
               "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Data\\GameSaveData.cs",
               "RelativeToolTip": "TowerDefense\\Data\\GameSaveData.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAkwBYAAAABAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAQwBMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T05:26:29.395Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 37,
               "Title": "SaveLoadSystem.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Data\\SaveLoadSystem.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Data\\SaveLoadSystem.cs",
               "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Data\\SaveLoadSystem.cs",
               "RelativeToolTip": "TowerDefense\\Data\\SaveLoadSystem.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAAwEwAAAABAAAA",
+              "ViewState": "AQIAADcAAAAAAAAAAAAswE8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T05:27:02.094Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "CannonTower.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\CannonTower.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Entities\\Towers\\CannonTower.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Entities\\Towers\\CannonTower.cs",
-              "RelativeToolTip": "TowerDefense\\Entities\\Towers\\CannonTower.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAABAAAA",
+              "DocumentIndex": 38,
+              "Title": "GameLevel1.Render.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs [Design]",
+              "RelativeToolTip": "TowerDefense\\Forms\\GameLevels\\GameLevel1.Render.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:30:16.04Z"
+              "WhenOpened": "2025-12-10T12:09:36.991Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 39,
+              "Title": "arrow.png",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\arrow.png",
+              "RelativeDocumentMoniker": "TowerDefense\\Assets\\Images\\arrow.png",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\arrow.png",
+              "RelativeToolTip": "TowerDefense\\Assets\\Images\\arrow.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-10T11:53:16.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "bomb.png",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\bomb.png",
+              "RelativeDocumentMoniker": "TowerDefense\\Assets\\Images\\bomb.png",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\bomb.png",
+              "RelativeToolTip": "TowerDefense\\Assets\\Images\\bomb.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-10T11:53:14.659Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "MovementComponent.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Components\\MovementComponent.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Components\\MovementComponent.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Components\\MovementComponent.cs",
+              "RelativeToolTip": "TowerDefense\\Components\\MovementComponent.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAAwD0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T03:56:29.847Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ShopForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\ShopForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\ShopForm.cs [Design]",
+              "RelativeToolTip": "TowerDefense\\Forms\\ShopForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T06:04:25.005Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "HistoryManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\HistoryManager.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Managers\\HistoryManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\HistoryManager.cs",
+              "RelativeToolTip": "TowerDefense\\Managers\\HistoryManager.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAwC0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T05:39:46.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "HistoryForm.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HistoryForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\Reports\\HistoryForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HistoryForm.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\Reports\\HistoryForm.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAYwB8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T05:40:11.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "HighScoreForm.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
+              "RelativeToolTip": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAwB8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T05:36:02.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "HighScoreForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
+              "RelativeDocumentMoniker": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\Reports\\HighScoreForm.cs [Design]",
+              "RelativeToolTip": "TowerDefense\\Forms\\Reports\\HighScoreForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T05:35:57.979Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Program.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Program.cs",
@@ -549,7 +815,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 48,
               "Title": "enemy.png",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\enemy.png",
               "RelativeDocumentMoniker": "TowerDefense\\Assets\\Images\\enemy.png",
@@ -560,42 +826,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "ResourceManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\ResourceManager.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Managers\\ResourceManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\ResourceManager.cs",
-              "RelativeToolTip": "TowerDefense\\Managers\\ResourceManager.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAqwB8AAAAPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:44:22.895Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "cannon.png",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\cannon.png",
-              "RelativeDocumentMoniker": "TowerDefense\\Assets\\Images\\cannon.png",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Assets\\Images\\cannon.png",
-              "RelativeToolTip": "TowerDefense\\Assets\\Images\\cannon.png",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-12-10T04:56:12.492Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "WaveManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\WaveManager.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Managers\\WaveManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Managers\\WaveManager.cs",
-              "RelativeToolTip": "TowerDefense\\Managers\\WaveManager.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAwDMAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:11:29.633Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 49,
               "Title": "GameLevel1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Forms\\GameLevels\\GameLevel1.cs",
@@ -607,19 +838,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "TowerDefense\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Form1.Designer.cs",
-              "RelativeToolTip": "TowerDefense\\Form1.Designer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T04:05:47.79Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 50,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Form1.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Form1.cs",
@@ -630,7 +849,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 52,
               "Title": "BaseEntity.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Core\\BaseEntity.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Core\\BaseEntity.cs",
@@ -642,7 +861,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 51,
               "Title": "IGameObject.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\TowerDefense\\TowerDefense\\Core\\IGameObject.cs",
               "RelativeDocumentMoniker": "TowerDefense\\Core\\IGameObject.cs",

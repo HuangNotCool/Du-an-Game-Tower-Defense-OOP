@@ -1,119 +1,194 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using TowerDefense.Managers; // Để lấy ảnh từ ResourceManager
+using System.Drawing.Drawing2D;
+using TowerDefense.Configs;
+using TowerDefense.Managers;
+using TowerDefense.Utils;
 
 namespace TowerDefense.Forms.Reports
 {
-    // Class chứa dữ liệu để hiển thị
-    public class EnemyInfo
-    {
-        public string Name { get; set; }
-        public string ImageKey { get; set; }
-        public int HP { get; set; }
-        public string Speed { get; set; }
-        public string Description { get; set; }
-    }
-
     public partial class BestiaryForm : Form
     {
-        private ListBox _listBox;
-        private PictureBox _pictureBox;
-        private Label _lblName;
-        private Label _lblStats;
-        private Label _lblDesc;
-        private List<EnemyInfo> _data;
+        private FlowLayoutPanel _pnlList; // Container cho danh sách quái
+        private Panel _pnlDetails;       // Container cho chi tiết quái
+        private EnemyStat[] _enemies = GameConfig.Enemies; // Lấy danh sách quái từ Config
 
         public BestiaryForm()
         {
-            InitializeComponent();
-            LoadData();
+            // Hàm khởi tạo cơ bản (Không dùng Designer.cs)
+            InitializeBasicComponent();
+            SetupUI();
+            LoadEnemyList();
 
-            // Chọn mặc định con đầu tiên
-            if (_listBox.Items.Count > 0) _listBox.SelectedIndex = 0;
+            // Hiển thị con quái đầu tiên khi mở form
+            if (_enemies.Length > 0) DisplayEnemyDetails(0);
         }
 
-        private void InitializeComponent()
+        private void InitializeBasicComponent()
         {
-            this.Text = "MONSTER BESTIARY (TỪ ĐIỂN QUÁI)";
-            this.Size = new Size(600, 450);
-            this.StartPosition = FormStartPosition.CenterParent;
-
-            // 1. ListBox bên trái
-            _listBox = new ListBox();
-            _listBox.Location = new Point(10, 10);
-            _listBox.Size = new Size(150, 380);
-            _listBox.SelectedIndexChanged += OnSelectionChanged;
-            this.Controls.Add(_listBox);
-
-            // 2. PictureBox bên phải
-            _pictureBox = new PictureBox();
-            _pictureBox.Location = new Point(180, 10);
-            _pictureBox.Size = new Size(128, 128); // Ảnh to gấp đôi
-            _pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            _pictureBox.BorderStyle = BorderStyle.FixedSingle;
-            this.Controls.Add(_pictureBox);
-
-            // 3. Label Tên
-            _lblName = new Label();
-            _lblName.Location = new Point(320, 10);
-            _lblName.AutoSize = true;
-            _lblName.Font = new Font("Arial", 16, FontStyle.Bold);
-            _lblName.ForeColor = Color.DarkRed;
-            this.Controls.Add(_lblName);
-
-            // 4. Label Chỉ số
-            _lblStats = new Label();
-            _lblStats.Location = new Point(320, 50);
-            _lblStats.AutoSize = true;
-            _lblStats.Font = new Font("Arial", 12, FontStyle.Regular);
-            this.Controls.Add(_lblStats);
-
-            // 5. Label Mô tả (Story)
-            _lblDesc = new Label();
-            _lblDesc.Location = new Point(180, 150);
-            _lblDesc.Size = new Size(380, 200); // Khung text rộng
-            _lblDesc.Font = new Font("Segoe UI", 10, FontStyle.Italic);
-            _lblDesc.BorderStyle = BorderStyle.Fixed3D;
-            _lblDesc.Padding = new Padding(5);
-            this.Controls.Add(_lblDesc);
+            this.Text = "Bestiary - Monster Codex";
+            this.Size = new Size(800, 600);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.BackColor = Color.FromArgb(30, 30, 40);
         }
 
-        private void LoadData()
+        private void SetupUI()
         {
-            // Tạo dữ liệu giả (Mock Data) - Sau này có thể load từ JSON Config
-            _data = new List<EnemyInfo>
+            // 1. Tiêu đề
+            Label lblTitle = new Label
             {
-                new EnemyInfo { Name = "Slime", ImageKey = "Enemy", HP = 100, Speed = "Slow", Description = "Quái vật nhầy nhụa cơ bản. Di chuyển chậm chạp nhưng xuất hiện rất đông. Dùng để farm vàng đầu game." },
-                new EnemyInfo { Name = "Goblin", ImageKey = "Enemy", HP = 250, Speed = "Medium", Description = "Lính bộ binh có trang bị nhẹ. Tốc độ trung bình. Nguy hiểm khi đi theo bầy." },
-                new EnemyInfo { Name = "Wolf", ImageKey = "Enemy", HP = 150, Speed = "Fast", Description = "Sói tinh nhuệ. Tốc độ rất nhanh, dễ dàng lướt qua hàng phòng thủ nếu không có tháp làm chậm." },
-                new EnemyInfo { Name = "Golem", ImageKey = "Enemy", HP = 1000, Speed = "Very Slow", Description = "Người đá khổng lồ. Máu cực trâu, đóng vai trò đỡ đạn cho các đơn vị khác." },
-                new EnemyInfo { Name = "DRAGON BOSS", ImageKey = "Enemy", HP = 5000, Speed = "Fast", Description = "TRÙM CUỐI. Sở hữu sức mạnh hủy diệt. Kháng hiệu ứng làm chậm. Tiêu diệt để chiến thắng game!" }
+                Text = "MONSTER CODEX",
+                Font = new Font("Arial", 20, FontStyle.Bold),
+                ForeColor = Color.Gold,
+                Location = new Point(20, 20),
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
+            this.Controls.Add(lblTitle);
 
-            // Đổ dữ liệu vào ListBox
-            foreach (var item in _data)
+            // 2. Nút đóng (Dùng GameButton bo tròn)
+            GameButton btnClose = new GameButton
             {
-                _listBox.Items.Add(item.Name);
+                Text = "X",
+                Location = new Point(740, 10),
+                Size = new Size(40, 40),
+                BorderRadius = 40,
+                Color1 = Color.DarkRed,
+                Color2 = Color.Maroon
+            };
+            btnClose.Click += (s, e) => this.Close();
+            this.Controls.Add(btnClose);
+
+            // 3. Panel Danh sách (Left Side)
+            _pnlList = new FlowLayoutPanel
+            {
+                Location = new Point(20, 70),
+                Size = new Size(220, 490),
+                BackColor = Color.FromArgb(40, 40, 60),
+                AutoScroll = true, // Quan trọng để xem hết 20 con
+                Padding = new Padding(5)
+            };
+            this.Controls.Add(_pnlList);
+
+            // 4. Panel Chi tiết (Right Side)
+            _pnlDetails = new Panel
+            {
+                Location = new Point(250, 70),
+                Size = new Size(530, 490),
+                BackColor = Color.FromArgb(50, 50, 70)
+            };
+            this.Controls.Add(_pnlDetails);
+        }
+
+        private void LoadEnemyList()
+        {
+            for (int i = 0; i < _enemies.Length; i++)
+            {
+                var stat = _enemies[i];
+                // Button đại diện cho mỗi con quái (Sử dụng GameButton)
+                GameButton btn = new GameButton
+                {
+                    Text = stat.Name,
+                    Tag = i, // Lưu ID của quái vào Tag
+                    Size = new Size(190, 45),
+                    Margin = new Padding(5, 5, 5, 0),
+                    Color1 = ControlPaint.Light(stat.Color),
+                    Color2 = stat.Color,
+                    BorderRadius = 10,
+                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    ForeColor = (stat.Color.GetBrightness() < 0.3) ? Color.White : Color.Black // Tự động chọn màu chữ
+                };
+
+                // Gán sự kiện click để hiện chi tiết
+                btn.Click += EnemyButtonClick;
+                _pnlList.Controls.Add(btn);
             }
         }
 
-        private void OnSelectionChanged(object sender, EventArgs e)
+        private void EnemyButtonClick(object sender, EventArgs e)
         {
-            if (_listBox.SelectedIndex < 0) return;
+            if (sender is GameButton btn && btn.Tag is int enemyId)
+            {
+                DisplayEnemyDetails(enemyId);
+            }
+        }
 
-            var info = _data[_listBox.SelectedIndex];
+        private void DisplayEnemyDetails(int enemyId)
+        {
+            _pnlDetails.Controls.Clear(); // Xóa nội dung cũ
 
-            // Cập nhật giao diện
-            _lblName.Text = info.Name.ToUpper();
-            _lblStats.Text = $"HP: {info.HP}\nSpeed: {info.Speed}";
-            _lblDesc.Text = info.Description;
+            if (enemyId < 0 || enemyId >= _enemies.Length) return;
 
-            // Lấy ảnh từ ResourceManager (Dùng key hoặc ảnh mặc định)
-            // Lưu ý: Bạn cần chắc chắn ResourceManager.GetImage đã có
-            Image img = ResourceManager.GetImage(info.ImageKey);
-            if (img != null) _pictureBox.Image = img;
+            var stat = _enemies[enemyId];
+            int y = 20;
+
+            // 1. Tên Quái
+            Label lblName = new Label
+            {
+                Text = stat.Name.ToUpper(),
+                Font = new Font("Arial", 28, FontStyle.Bold),
+                ForeColor = stat.Color,
+                Location = new Point(20, y),
+                AutoSize = true,
+                BackColor = Color.Transparent
+            };
+            _pnlDetails.Controls.Add(lblName);
+            y += 50;
+
+            // 2. Phân loại & Mô tả
+            string type = (stat.DamageToTower > 0) ? "Melee (Attacks Towers)" : "Runner (Ignores Towers)";
+            if (stat.CanFly) type = "FLYING (Ignores ground path)";
+
+            Label lblType = new Label
+            {
+                Text = $"Type: {type}",
+                Font = new Font("Arial", 12, FontStyle.Italic),
+                ForeColor = Color.LightGray,
+                Location = new Point(25, y),
+                AutoSize = true,
+                BackColor = Color.Transparent
+            };
+            _pnlDetails.Controls.Add(lblType);
+            y += 40;
+
+            // 3. Thông số cơ bản
+            string details = $"HEALTH: {stat.MaxHealth}\n";
+            details += $"SPEED: {stat.Speed} px/s\n";
+            details += $"REWARD: {stat.Reward} Gold\n";
+            details += "\n--- COMBAT ---\n";
+            details += $"DAMAGE (vs Base): 1\n";
+            details += $"DAMAGE (vs Tower): {stat.DamageToTower}\n";
+            details += $"RANGE: {(stat.DamageToTower > 0 ? stat.AttackRange.ToString() + " px" : "N/A")}\n";
+
+            Label lblStats = new Label
+            {
+                Text = details,
+                Font = new Font("Consolas", 11),
+                ForeColor = Color.LightGreen,
+                Location = new Point(25, y),
+                AutoSize = true,
+                BackColor = Color.Transparent
+            };
+            _pnlDetails.Controls.Add(lblStats);
+
+            // 4. Ảnh đại diện (Sprite)
+            Image sprite = ResourceManager.GetImage(stat.Name);
+            if (sprite != null)
+            {
+                // Vị trí ảnh: Góc trên bên phải
+                PictureBox pb = new PictureBox
+                {
+                    Image = sprite,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Location = new Point(350, 10),
+                    Size = new Size(150, 150),
+                    BackColor = Color.Transparent
+                };
+                _pnlDetails.Controls.Add(pb);
+            }
         }
     }
 }

@@ -5,15 +5,29 @@ namespace TowerDefense.Data
 {
     public class UserProfile
     {
-        // --- DỮ LIỆU VĨNH VIỄN ---
-        public int Diamonds { get; set; } = 100; // Cho sẵn 100 kim cương để test
+        // --- TÀI SẢN ---
+        public int Diamonds { get; set; } = 200; // Tặng 200 kim cương khởi nghiệp
 
-        // Cấp độ nâng cấp (Mặc định lv 0)
+        // --- CẤP ĐỘ NÂNG CẤP (META-PROGRESSION) ---
+
+        // 1. Archer Upgrades
         public int ArcherDamageLevel { get; set; } = 0;
         public int ArcherRangeLevel { get; set; } = 0;
-        public int CannonDamageLevel { get; set; } = 0;
+        public int ArcherSpeedLevel { get; set; } = 0;
 
-        // --- QUẢN LÝ LƯU / TẢI ---
+        // 2. Cannon Upgrades
+        public int CannonDamageLevel { get; set; } = 0;
+        public int CannonRangeLevel { get; set; } = 0;
+        public int CannonBlastRadiusLevel { get; set; } = 0; // Phạm vi nổ
+
+        // 3. Sniper Upgrades
+        public int SniperDamageLevel { get; set; } = 0;
+        public int SniperRangeLevel { get; set; } = 0;
+
+        // 4. Ice Upgrades
+        public int IceSlowLevel { get; set; } = 0; // Làm chậm mạnh hơn
+
+        // --- SAVE/LOAD SYSTEM ---
         private static string _filePath = "userprofile.json";
         private static UserProfile _instance;
 
@@ -30,12 +44,16 @@ namespace TowerDefense.Data
         {
             if (File.Exists(_filePath))
             {
-                string json = File.ReadAllText(_filePath);
-                _instance = JsonConvert.DeserializeObject<UserProfile>(json);
+                try
+                {
+                    string json = File.ReadAllText(_filePath);
+                    _instance = JsonConvert.DeserializeObject<UserProfile>(json);
+                }
+                catch { _instance = new UserProfile(); }
             }
             else
             {
-                _instance = new UserProfile(); // Tạo mới nếu chưa có
+                _instance = new UserProfile();
                 Save();
             }
         }
