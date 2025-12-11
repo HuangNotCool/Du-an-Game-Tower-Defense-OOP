@@ -118,9 +118,16 @@ namespace TowerDefense.Forms
             Button btnHistory = CreateMenuButton("MATCH HISTORY", startY + gap * 4, Color.Teal);
             btnHistory.Click += (s, e) => { new HistoryForm().ShowDialog(); };
 
-            // Nút EXIT
-            Button btnExit = CreateMenuButton("EXIT GAME", startY + gap * 5, Color.DarkRed);
+            // Nút ABOUT (Thêm vào trước nút Exit)
+            Button btnAbout = CreateMenuButton("ℹ  ABOUT GAME", startY + gap * 5, Color.DodgerBlue);
+            btnAbout.Click += (s, e) => { new AboutForm().ShowDialog(); };
+
+            // Nút EXIT (Đẩy xuống vị trí thứ 6)
+            Button btnExit = CreateMenuButton("🚪  EXIT GAME", startY + gap * 6, Color.DarkRed);
             btnExit.Click += (s, e) => Application.Exit();
+
+            // Tăng chiều cao Form lên chút nữa để chứa hết
+            this.Size = new Size(600, 750);
         }
 
         // Cập nhật hàm tạo nút

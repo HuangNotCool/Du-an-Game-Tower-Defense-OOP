@@ -7,7 +7,9 @@ namespace TowerDefense.Utils
 {
     public class GameButton : Button
     {
-        // --- CẤU HÌNH MÀU SẮC ---
+        // =========================================================
+        // 1. CẤU HÌNH MÀU SẮC & GIAO DIỆN
+        // =========================================================
         public Color Color1 { get; set; } = Color.RoyalBlue;
         public Color Color2 { get; set; } = Color.MidnightBlue;
         public Color HoverColor1 { get; set; } = Color.DodgerBlue;
@@ -18,6 +20,14 @@ namespace TowerDefense.Utils
         private bool _isHovering = false;
         private bool _isPressed = false;
 
+        // --- BIẾN CACHE (TỐI ƯU HÓA HIỆU NĂNG) ---
+        // Lưu trữ hình dáng nút để không phải tính lại mỗi lần vẽ (gây lag)
+        private GraphicsPath _cachedPath;
+        private Region _cachedRegion;
+
+        // =========================================================
+        // 2. CONSTRUCTOR
+        // =========================================================
         public GameButton()
         {
             this.FlatStyle = FlatStyle.Flat;
@@ -28,91 +38,102 @@ namespace TowerDefense.Utils
             this.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             this.Cursor = Cursors.Hand;
 
-            // Chống nháy hình khi vẽ lại
-            this.DoubleBuffered = true;
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
+            // Bật Double Buffer để chống nháy hình
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer |
                           ControlStyles.ResizeRedraw |
                           ControlStyles.SupportsTransparentBackColor |
                           ControlStyles.UserPaint, true);
         }
 
         // =========================================================
-        // HÀM VẼ CHÍNH (QUAN TRỌNG NHẤT)
+        // 3. TỐI ƯU HÓA HÌNH DÁNG (SHAPE CACHING)
+        // =========================================================
+
+        // Chỉ tính toán lại hình dáng khi kích thước thay đổi
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            UpdateShape();
+        }
+
+        private void UpdateShape()
+        {
+            if (this.Width == 0 || this.Height == 0) return;
+
+            Rectangle rect = this.ClientRectangle;
+            rect.Width--; rect.Height--;
+
+            // Xóa cache cũ
+            _cachedPath?.Dispose();
+            _cachedRegion?.Dispose();
+
+            // Tạo cache mới
+            _cachedPath = GetRoundedPath(rect, BorderRadius);
+            _cachedRegion = new Region(_cachedPath);
+
+            // Cập nhật vùng tương tác (để chuột chỉ click được trong phần bo tròn)
+            this.Region = _cachedRegion;
+        }
+
+        // =========================================================
+        // 4. HÀM VẼ CHÍNH (ON PAINT)
         // =========================================================
         protected override void OnPaint(PaintEventArgs pevent)
         {
             Graphics g = pevent.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic; // Vẽ ảnh sắc nét
 
-            Rectangle rect = this.ClientRectangle;
-            rect.Width--; rect.Height--; // Giảm 1px để viền mượt
+            // --- CẤU HÌNH ĐỒ HỌA TỐC ĐỘ CAO ---
+            g.SmoothingMode = SmoothingMode.HighSpeed;
+            g.CompositingQuality = CompositingQuality.HighSpeed;
+            g.InterpolationMode = InterpolationMode.Low;
 
-            // 1. VẼ HÌNH DÁNG NÚT (BO TRÒN)
-            using (GraphicsPath path = GetRoundedPath(rect, BorderRadius))
+            // Nếu cache bị mất (hiếm khi), tạo lại
+            if (_cachedPath == null) UpdateShape();
+
+            // A. TÔ MÀU NỀN (GRADIENT)
+            Color c1 = _isHovering ? HoverColor1 : Color1;
+            Color c2 = _isHovering ? HoverColor2 : Color2;
+            if (_isPressed) { c1 = Color2; c2 = Color1; } // Đảo màu khi nhấn
+
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, c1, c2, 90F))
             {
-                this.Region = new Region(path); // Cắt khung nút
-
-                // 2. TÔ MÀU NỀN (GRADIENT)
-                Color c1 = _isHovering ? HoverColor1 : Color1;
-                Color c2 = _isHovering ? HoverColor2 : Color2;
-                if (_isPressed) { c1 = Color2; c2 = Color1; } // Đảo màu khi nhấn
-
-                using (LinearGradientBrush brush = new LinearGradientBrush(rect, c1, c2, 90F))
-                {
-                    g.FillPath(brush, path);
-                }
-
-                // 3. VẼ VIỀN SÁNG (HIGHLIGHT)
-                using (Pen pen = new Pen(Color.FromArgb(80, 255, 255, 255), 2))
-                {
-                    g.DrawPath(pen, path);
-                }
+                g.FillPath(brush, _cachedPath);
             }
 
-            // =========================================================
-            // 4. VẼ NỘI DUNG (ẢNH & CHỮ)
-            // =========================================================
+            // B. VẼ VIỀN SÁNG (HIGHLIGHT)
+            using (Pen pen = new Pen(Color.FromArgb(80, 255, 255, 255), 2))
+            {
+                g.DrawPath(pen, _cachedPath);
+            }
 
-
-
+            // C. VẼ NỘI DUNG (ẢNH VÀ CHỮ)
             if (this.Image != null)
             {
-                // --- TRƯỜNG HỢP CÓ ẢNH (NÚT CHỌN THÁP) ---
-
-                // Tính toán vị trí để vẽ ảnh nằm ở nửa trên
-                // Giữ nguyên tỉ lệ hoặc vẽ theo kích thước ảnh đã resize
+                // --- TRƯỜNG HỢP CÓ ẢNH (VẼ TRÊN - DƯỚI) ---
                 int imgW = this.Image.Width;
                 int imgH = this.Image.Height;
 
-                // Căn giữa theo chiều ngang
+                // Căn giữa ảnh ở nửa trên
                 int imgX = (this.Width - imgW) / 2;
-                int imgY = 8; // Cách lề trên một chút
-
-                // Vẽ ảnh
+                int imgY = 5;
                 g.DrawImage(this.Image, imgX, imgY, imgW, imgH);
 
-                // Vẽ Text (Giá tiền) nằm ở dưới ảnh
-                // Tạo một hình chữ nhật bao quanh phần dưới của nút
-                int textY = imgY + imgH + 2;
-                Rectangle textRect = new Rectangle(0, textY, this.Width, this.Height - textY);
-
-                // Vẽ chữ vào giữa hình chữ nhật đó
-                TextRenderer.DrawText(g, this.Text, this.Font, textRect, this.ForeColor,
-                    TextFormatFlags.HorizontalCenter | TextFormatFlags.Top | TextFormatFlags.WordBreak);
+                // Vẽ chữ ở nửa dưới
+                Rectangle textRect = new Rectangle(0, imgH + 5, this.Width, this.Height - imgH - 5);
+                TextRenderer.DrawText(g, this.Text, this.Font, textRect, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.Top | TextFormatFlags.WordBreak);
             }
             else
             {
-                // --- TRƯỜNG HỢP KHÔNG CÓ ẢNH (NÚT THƯỜNG) ---
-                // Vẽ chữ nằm chính giữa nút
-                TextRenderer.DrawText(g, this.Text, this.Font, rect, this.ForeColor,
-                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                // --- TRƯỜNG HỢP KHÔNG CÓ ẢNH (VẼ GIỮA) ---
+                TextRenderer.DrawText(g, this.Text, this.Font, this.ClientRectangle, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
             }
         }
 
         // =========================================================
-        // HÀM HỖ TRỢ VẼ BO TRÒN
+        // 5. CÁC HÀM HỖ TRỢ
         // =========================================================
+
         private GraphicsPath GetRoundedPath(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
@@ -125,35 +146,10 @@ namespace TowerDefense.Utils
             return path;
         }
 
-        // =========================================================
-        // XỬ LÝ SỰ KIỆN CHUỘT (ĐỂ ĐỔI MÀU)
-        // =========================================================
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-            _isHovering = true;
-            Invalidate(); // Yêu cầu vẽ lại
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-            _isHovering = false;
-            Invalidate();
-        }
-
-        protected override void OnMouseDown(MouseEventArgs mevent)
-        {
-            base.OnMouseDown(mevent);
-            _isPressed = true;
-            Invalidate();
-        }
-
-        protected override void OnMouseUp(MouseEventArgs mevent)
-        {
-            base.OnMouseUp(mevent);
-            _isPressed = false;
-            Invalidate();
-        }
+        // Sự kiện chuột
+        protected override void OnMouseEnter(EventArgs e) { base.OnMouseEnter(e); _isHovering = true; Invalidate(); }
+        protected override void OnMouseLeave(EventArgs e) { base.OnMouseLeave(e); _isHovering = false; Invalidate(); }
+        protected override void OnMouseDown(MouseEventArgs mevent) { base.OnMouseDown(mevent); _isPressed = true; Invalidate(); }
+        protected override void OnMouseUp(MouseEventArgs mevent) { base.OnMouseUp(mevent); _isPressed = false; Invalidate(); }
     }
 }

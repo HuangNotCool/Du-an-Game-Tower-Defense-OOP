@@ -73,6 +73,28 @@ namespace TowerDefense.Entities
                 ApplySpecialEffects(_target);
             }
 
+            // --- GỌI HIỆU ỨNG VISUAL ---
+            if (_type == "Bomb" || _type == "Rocket")
+            {
+                // Nổ cam đỏ
+                GameManager.Instance.CreateExplosion(X, Y, Color.OrangeRed);
+            }
+            else if (_type == "Ice")
+            {
+                // Nổ băng xanh
+                GameManager.Instance.CreateIceEffect(X, Y);
+            }
+            else if (_type == "Magic")
+            {
+                // Nổ tím
+                GameManager.Instance.CreateExplosion(X, Y, Color.Purple);
+            }
+            else
+            {
+                // Bắn thường (Mũi tên) -> Bụi trắng nhỏ
+                GameManager.Instance.CreateHitEffect(X, Y);
+            }
+
             // 2. Xử lý nổ lan (Area of Effect) cho Bomb/Rocket
             if (_type == "Bomb" || _type == "Rocket" || _type == "Fire")
             {

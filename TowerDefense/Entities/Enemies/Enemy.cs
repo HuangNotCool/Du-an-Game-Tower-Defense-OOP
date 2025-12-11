@@ -4,39 +4,50 @@ using System.Collections.Generic;
 using TowerDefense.Core;
 using TowerDefense.Components;
 using TowerDefense.Managers;
-using TowerDefense.Configs;         // Để lấy thông số quái
-using TowerDefense.Entities.Towers; // Để tương tác với Tower
+using TowerDefense.Configs;
+using TowerDefense.Entities.Towers;
 
 namespace TowerDefense.Entities.Enemies
 {
     public class Enemy : BaseEntity
     {
-        // --- CHỈ SỐ CƠ BẢN ---
+        // =========================================================
+        // 1. TỐI ƯU HÓA GDI+ (STATIC RESOURCES)
+        // =========================================================
+        private static readonly SolidBrush _hpBackBrush = new SolidBrush(Color.Red);
+        private static readonly SolidBrush _hpForeBrush = new SolidBrush(Color.LimeGreen);
+        private static readonly Pen _borderPen = new Pen(Color.Black, 1);
+
+        // =========================================================
+        // 2. THUỘC TÍNH & TRẠNG THÁI
+        // =========================================================
+
+        // Thông tin cơ bản
         public string Name { get; private set; }
         public int Health { get; private set; }
         public int MaxHealth { get; private set; }
         public int RewardGold { get; set; }
-        public Color Color { get; set; } // Màu đại diện nếu chưa có ảnh
+        public Color Color { get; set; }
 
-        // --- CHỈ SỐ TẤN CÔNG (MỚI) ---
-        public int DamageToTower { get; private set; } // Sát thương lên trụ
-        public float AttackRange { get; private set; } // Tầm đánh trụ
-        private float _attackCooldown = 1.0f;          // Tốc độ đánh (1s/hit)
+        // Chỉ số chiến đấu (Dành cho quái phá trụ)
+        public int DamageToTower { get; private set; }
+        public float AttackRange { get; private set; }
+        private float _attackCooldown = 1.0f; // Tốc độ đánh mặc định
         private float _currentAttackTimer = 0f;
-        private Tower _targetTower;                    // Tháp đang bị nhắm mục tiêu
+        private Tower _targetTower;
 
-        // --- COMPONENTS & STATE ---
+        // Components & State
         private MovementComponent _movement;
-        private float _slowTimer = 0;   // Thời gian bị làm chậm
-        private float _rotation = 0f;   // Góc quay
-        private PointF _lastPos;        // Vị trí cũ
+        private float _slowTimer = 0;
+        private float _rotation = 0f;
+        private PointF _lastPos;
 
         // =========================================================
-        // CONSTRUCTOR
+        // 3. CONSTRUCTOR
         // =========================================================
         public Enemy(List<Point> path, int enemyTypeId)
         {
-            // 1. Load chỉ số từ GameConfig
+            // A. Load chỉ số từ Config (Data-Driven)
             if (enemyTypeId < 0 || enemyTypeId >= GameConfig.Enemies.Length) enemyTypeId = 0;
             var stat = GameConfig.Enemies[enemyTypeId];
 
@@ -49,13 +60,13 @@ namespace TowerDefense.Entities.Enemies
             this.Color = stat.Color;
 
             // Kích thước chuẩn
-            this.Width = 32;
-            this.Height = 32;
+            this.Width = 36; // To hơn chút so với tháp
+            this.Height = 36;
 
-            // 2. Khởi tạo Component Di chuyển
+            // B. Khởi tạo Di chuyển
             _movement = new MovementComponent(path, stat.Speed);
 
-            // 3. Đặt vị trí xuất phát
+            // C. Đặt vị trí đầu tiên
             if (path != null && path.Count > 0)
             {
                 X = path[0].X;
@@ -65,61 +76,58 @@ namespace TowerDefense.Entities.Enemies
         }
 
         // =========================================================
-        // GAME LOGIC (UPDATE)
+        // 4. GAME LOGIC (UPDATE)
         // =========================================================
         public override void Update(float deltaTime)
         {
-            // 1. Xử lý hiệu ứng làm chậm (Slow)
+            // A. Xử lý hiệu ứng Làm chậm (Slow)
             if (_slowTimer > 0)
             {
                 _slowTimer -= deltaTime;
-                if (_slowTimer <= 0) _movement.SetSpeedScale(1.0f); // Hết chậm
+                if (_slowTimer <= 0) _movement.SetSpeedScale(1.0f); // Khôi phục tốc độ
             }
 
-            // 2. Giảm hồi chiêu tấn công
+            // B. Giảm hồi chiêu tấn công
             if (_currentAttackTimer > 0) _currentAttackTimer -= deltaTime;
 
-            // 3. LOGIC TẤN CÔNG THÁP (AI)
-            // Chỉ chạy nếu quái này có khả năng đánh trụ
+            // C. LOGIC AI TẤN CÔNG THÁP (State: Attacking)
             if (DamageToTower > 0)
             {
-                // Nếu chưa có mục tiêu hoặc mục tiêu đã chết/quá xa -> Tìm mới
+                // 1. Tìm mục tiêu nếu chưa có hoặc mục tiêu không hợp lệ
                 if (_targetTower == null || !_targetTower.IsActive || GetDistance(_targetTower) > AttackRange)
                 {
                     _targetTower = FindNearestTower();
                 }
 
-                // Nếu đã có mục tiêu trong tầm đánh
+                // 2. Nếu có mục tiêu -> Tấn công
                 if (_targetTower != null)
                 {
-                    // --- HÀNH ĐỘNG TẤN CÔNG ---
-
-                    // A. Xoay mặt về phía tháp
+                    // Xoay mặt về phía tháp
                     CalculateRotation(_targetTower.X, _targetTower.Y);
 
-                    // B. Gây sát thương
+                    // Gây sát thương
                     if (_currentAttackTimer <= 0)
                     {
                         _targetTower.TakeDamage(DamageToTower);
-                        _currentAttackTimer = _attackCooldown; // Reset cooldown
+                        _currentAttackTimer = _attackCooldown;
 
-                        // Hiệu ứng Visual (Chớp đỏ hoặc rung - Optional)
+                        // Visual effect nhỏ (rung lắc hoặc âm thanh) có thể thêm ở đây
                     }
 
-                    // C. DỪNG DI CHUYỂN (Return ngay lập tức)
+                    // QUAN TRỌNG: Return để DỪNG DI CHUYỂN
                     return;
                 }
             }
 
-            // 4. LOGIC DI CHUYỂN (Chỉ chạy khi không đánh nhau)
-            _lastPos = new PointF(X, Y); // Lưu vị trí cũ
+            // D. LOGIC DI CHUYỂN (State: Moving)
+            _lastPos = new PointF(X, Y);
 
             PointF newPos = _movement.Update(new PointF(X, Y), deltaTime);
             X = newPos.X;
             Y = newPos.Y;
 
             // Tính góc xoay theo hướng di chuyển
-            CalculateRotation(X, Y, true);
+            CalculateRotation(X, Y, isMoving: true);
 
             // Kiểm tra về đích
             if (_movement.HasReachedEnd)
@@ -129,7 +137,7 @@ namespace TowerDefense.Entities.Enemies
         }
 
         // =========================================================
-        // CÁC HÀM HỖ TRỢ (HELPER)
+        // 5. CÁC HÀM HỖ TRỢ (HELPER)
         // =========================================================
 
         private void CalculateRotation(float targetX, float targetY, bool isMoving = false)
@@ -138,20 +146,19 @@ namespace TowerDefense.Entities.Enemies
 
             if (isMoving)
             {
-                // Nếu đang đi: Tính hướng dựa trên sự thay đổi vị trí so với khung hình trước
                 dx = X - _lastPos.X;
                 dy = Y - _lastPos.Y;
-                // Nếu đứng yên thì không xoay
+                // Nếu đứng yên (hoặc di chuyển quá ít) thì không xoay để tránh giật hình
                 if (Math.Abs(dx) < 0.1f && Math.Abs(dy) < 0.1f) return;
             }
             else
             {
-                // Nếu đang đánh: Tính hướng tới mục tiêu
                 dx = targetX - X;
                 dy = targetY - Y;
             }
 
             // Atan2 trả về Radian -> Đổi sang Độ
+            // Lưu ý: Sprite gốc phải hướng sang Phải (0 độ)
             _rotation = (float)(Math.Atan2(dy, dx) * 180 / Math.PI);
         }
 
@@ -160,12 +167,13 @@ namespace TowerDefense.Entities.Enemies
             Tower nearest = null;
             float minDst = float.MaxValue;
 
+            // Duyệt danh sách tháp từ GameManager
             foreach (var tower in GameManager.Instance.Towers)
             {
                 if (!tower.IsActive) continue;
 
                 float dst = GetDistance(tower);
-                // Tìm tháp gần nhất VÀ phải nằm trong tầm đánh
+                // Chỉ chọn tháp nằm trong tầm đánh
                 if (dst <= AttackRange && dst < minDst)
                 {
                     minDst = dst;
@@ -188,7 +196,7 @@ namespace TowerDefense.Entities.Enemies
             if (Health <= 0)
             {
                 IsActive = false;
-                // Tiền thưởng được xử lý bên GameManager khi check IsActive
+                // Tiền thưởng sẽ được cộng ở GameManager
             }
         }
 
@@ -199,12 +207,11 @@ namespace TowerDefense.Entities.Enemies
         }
 
         // =========================================================
-        // RENDER (VẼ)
+        // 6. RENDER (VẼ)
         // =========================================================
         public override void Render(Graphics g)
         {
-            // 1. Vẽ Sprite (Ưu tiên ảnh riêng theo tên, nếu không có thì dùng ảnh chung Enemy)
-            // Ví dụ: Goblin.png, Orc.png...
+            // A. Vẽ Sprite (Xoay)
             Image sprite = ResourceManager.GetImage(this.Name);
             if (sprite == null) sprite = ResourceManager.GetImage("Enemy"); // Fallback
 
@@ -218,31 +225,39 @@ namespace TowerDefense.Entities.Enemies
             }
             else
             {
-                // Fallback: Vẽ hình tròn màu theo Config
-                g.FillEllipse(new SolidBrush(this.Color), X - Width / 2, Y - Height / 2, Width, Height);
-                // Vẽ viền đen để rõ hướng (chấm nhỏ phía trước)
+                // Vẽ fallback nếu không có ảnh
+                using (SolidBrush b = new SolidBrush(this.Color))
+                {
+                    g.FillEllipse(b, X - Width / 2, Y - Height / 2, Width, Height);
+                }
+                // Vẽ chấm hướng
                 float dirX = X + (float)Math.Cos(_rotation * Math.PI / 180) * 15;
                 float dirY = Y + (float)Math.Sin(_rotation * Math.PI / 180) * 15;
                 g.FillEllipse(Brushes.White, dirX - 3, dirY - 3, 6, 6);
             }
 
-            // 2. Vẽ Thanh Máu
+            // B. Vẽ Thanh Máu (Luôn nằm ngang, không xoay)
             RenderHealthBar(g);
         }
 
         private void RenderHealthBar(Graphics g)
         {
-            float hpPercent = (float)Health / MaxHealth;
+            float hpPercent = (float)Health / MaxHP;
             if (hpPercent < 0) hpPercent = 0;
+            if (hpPercent > 1) hpPercent = 1;
 
             int barWidth = 32;
-            int barHeight = 5;
+            int barHeight = 4;
             float barX = X - barWidth / 2;
-            float barY = Y - Height / 2 - 10;
+            float barY = Y - Height / 2 - 8;
 
-            g.FillRectangle(Brushes.Red, barX, barY, barWidth, barHeight);
-            g.FillRectangle(Brushes.LightGreen, barX, barY, barWidth * hpPercent, barHeight);
-            g.DrawRectangle(Pens.Black, barX, barY, barWidth, barHeight);
+            // Dùng Brush tĩnh để tối ưu
+            g.FillRectangle(_hpBackBrush, barX, barY, barWidth, barHeight);
+            g.FillRectangle(_hpForeBrush, barX, barY, barWidth * hpPercent, barHeight);
+            g.DrawRectangle(_borderPen, barX, barY, barWidth, barHeight);
         }
+
+        // Helper tính MaxHP an toàn
+        private int MaxHP => MaxHealth > 0 ? MaxHealth : 100;
     }
 }

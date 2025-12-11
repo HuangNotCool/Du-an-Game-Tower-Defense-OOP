@@ -18,7 +18,9 @@ namespace TowerDefense.Data
                 Money = GameManager.Instance.PlayerMoney,
                 Lives = GameManager.Instance.PlayerLives,
                 CurrentWave = GameManager.Instance.WaveMgr.CurrentWave,
-                LevelId = 1 // Tạm hardcode, hoặc lấy từ GameManager nếu có biến lưu LevelId
+
+                // --- SỬA DÒNG NÀY: Lấy Level hiện tại từ LevelManager ---
+                LevelId = GameManager.Instance.LevelMgr.CurrentLevelId
             };
 
             foreach (var tower in GameManager.Instance.Towers)
