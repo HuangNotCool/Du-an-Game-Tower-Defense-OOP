@@ -1,108 +1,101 @@
 ﻿using System;
-using TowerDefense.Configs; // Để biết tổng số loại quái
+using TowerDefense.Configs;
 
 namespace TowerDefense.Managers
 {
     public class WaveManager
     {
-        // --- TRẠNG THÁI WAVE ---
         public int CurrentWave { get; private set; } = 0;
         public bool IsWaveRunning { get; private set; } = false;
 
-        // --- BIẾN LOGIC ---
-        private float _spawnTimer = 0;       // Đếm ngược thời gian sinh quái
-        private float _spawnInterval = 1.0f; // Khoảng cách thời gian giữa 2 con quái
-        private int _enemiesLeftToSpawn = 0; // Số lượng quái còn lại cần sinh trong wave này
+        private float _spawnTimer = 0;
+        private float _spawnInterval = 1.0f;
+        private int _enemiesLeftToSpawn = 0;
 
-        // Random để chọn loại quái ngẫu nhiên trong dải cho phép
         private Random _random = new Random();
 
-        // =========================================================
-        // LOGIC KHỞI ĐỘNG WAVE MỚI
-        // =========================================================
         public void StartNextWave()
         {
             CurrentWave++;
             IsWaveRunning = true;
 
-            // 1. Tính số lượng quái (Tăng dần theo Wave)
-            // Công thức: 5 con cơ bản + (Wave * 2)
-            // VD: Wave 1 = 7 con, Wave 10 = 25 con
-            _enemiesLeftToSpawn = 5 + (CurrentWave * 2);
+            // --- TĂNG SỐ LƯỢNG QUÁI (ĐÔNG HƠN) ---
+            // Wave 1: 13 con, Wave 10: 40 con
+            _enemiesLeftToSpawn = 10 + (CurrentWave * 3);
 
-            // 2. Tính tốc độ ra quái (Càng về sau ra càng nhanh)
-            // Giảm 0.05s mỗi wave, tối thiểu là 0.2s/con
-            _spawnInterval = Math.Max(0.2f, 1.5f - (CurrentWave * 0.05f));
+            // Tốc độ ra quái nhanh dần (Max tốc độ: 0.15s/con)
+            _spawnInterval = Math.Max(0.15f, 1.2f - (CurrentWave * 0.05f));
 
-            _spawnTimer = 0; // Reset timer để con đầu tiên ra ngay lập tức
+            // Nếu là Wave Boss (Chia hết cho 5), ra ít quái hơn nhưng chất lượng hơn
+            if (CurrentWave % 5 == 0)
+            {
+                _enemiesLeftToSpawn = 5 + (CurrentWave / 2); // Ít nhưng trâu
+                _spawnInterval = 2.0f; // Ra chậm để người chơi kịp thở
+            }
+
+            _spawnTimer = 0;
         }
 
-        // =========================================================
-        // UPDATE LOOP (GỌI TỪ GAMEMANAGER)
-        // =========================================================
-        // Trả về: ID của loại quái cần sinh (-1 nếu không sinh)
         public int Update(float deltaTime)
         {
             if (!IsWaveRunning) return -1;
 
-            // Nếu đã sinh hết quái -> Dừng trạng thái sinh
             if (_enemiesLeftToSpawn <= 0)
             {
                 IsWaveRunning = false;
                 return -1;
             }
 
-            // Đếm ngược
             _spawnTimer -= deltaTime;
-
             if (_spawnTimer <= 0)
             {
-                // Reset đồng hồ
                 _spawnTimer = _spawnInterval;
                 _enemiesLeftToSpawn--;
-
-                // Trả về ID quái để GameManager tạo
                 return GetEnemyTypeForCurrentWave();
             }
-
             return -1;
         }
 
-        // =========================================================
-        // THUẬT TOÁN CHỌN QUÁI (QUAN TRỌNG)
-        // =========================================================
+        // --- THUẬT TOÁN CHỌN QUÁI KHÓ HƠN ---
         private int GetEnemyTypeForCurrentWave()
         {
-            int totalEnemyTypes = GameConfig.Enemies.Length; // 20 loại
+            // ID của các loại quái trong mảng (0-19)
+            int minType = 0;
+            int maxType = 0;
 
-            // --- LOGIC: CỬA SỔ TRƯỢT (SLIDING WINDOW) ---
-            // Wave 1: Random từ 0-2 (Slime, Rat, Bat)
-            // Wave 5: Random từ 2-5 (Bat, Goblin, Skeleton)
-            // ...
-            // Wave cao sẽ mở khóa quái mới và bỏ qua quái quá yếu
+            // 1. FINAL BOSS (Wave 20)
+            if (CurrentWave == 20) return 19; // Demon King
 
-            // Tính chỉ số bắt đầu (Min)
-            int minType = (CurrentWave - 1) / 2;
-
-            // Tính chỉ số kết thúc (Max) - Mở rộng đa dạng 3-4 loại mỗi wave
-            int maxType = minType + 3;
-
-            // --- LOGIC BOSS WAVE (Mỗi 5 Wave) ---
+            // 2. BOSS WAVE (Mỗi 5 wave: 5, 10, 15)
             if (CurrentWave % 5 == 0)
             {
-                // Wave 5, 10, 15... sẽ spawn quái mạnh nhất trong tier hiện tại
-                minType = maxType;
+                // Wave 5: Boss Tier 2 (Witch/Ghost)
+                if (CurrentWave == 5) return _random.Next(8, 10);
+
+                // Wave 10: Boss Tier 3 (Golem/Assassin)
+                if (CurrentWave == 10) return _random.Next(13, 15);
+
+                // Wave 15: Boss Tier 4 (Cyclops/Hydra...)
+                if (CurrentWave == 15) return _random.Next(15, 19);
             }
 
-            // --- KẸP GIÁ TRỊ (CLAMP) ---
-            // Không được nhỏ hơn 0
-            if (minType < 0) minType = 0;
+            // 3. HARD WAVE (Mỗi 3 wave: 3, 6, 9, 12...)
+            // Xuất hiện quái mạnh hơn bình thường 1 bậc
+            if (CurrentWave % 3 == 0)
+            {
+                minType = Math.Min(10, CurrentWave);
+                maxType = Math.Min(14, CurrentWave + 2);
+            }
+            // 4. NORMAL WAVE
+            else
+            {
+                // Cửa sổ trượt: Wave 1 (0-3), Wave 2 (1-4)...
+                minType = Math.Max(0, CurrentWave - 2);
+                maxType = Math.Min(14, CurrentWave + 2);
+            }
 
-            // Không được vượt quá danh sách quái có trong Config
-            if (maxType >= totalEnemyTypes) maxType = totalEnemyTypes - 1;
-            if (minType > maxType) minType = maxType;
-
-            // Random ra ID cuối cùng
+            // Random trong khoảng tính toán
+            if (maxType >= GameConfig.Enemies.Length) maxType = GameConfig.Enemies.Length - 1;
             return _random.Next(minType, maxType + 1);
         }
     }

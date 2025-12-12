@@ -2,317 +2,296 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using TowerDefense.Core;
-using TowerDefense.Entities;          // Chứa Projectile, FloatingText, Particle
-using TowerDefense.Entities.Enemies;  // Chứa Enemy
-using TowerDefense.Entities.Towers;   // Chứa Tower
-using TowerDefense.Configs;           // Chứa GameConfig
+using TowerDefense.Entities;
+using TowerDefense.Entities.Towers;
+using TowerDefense.Entities.Enemies;
+using TowerDefense.Configs;
 
 namespace TowerDefense.Managers
 {
     public class GameManager
     {
         // =========================================================
-        // 1. SINGLETON & DANH SÁCH QUẢN LÝ
+        // 1. SINGLETON & STATE
         // =========================================================
-        private static GameManager _instance;
-        public static GameManager Instance => _instance ?? (_instance = new GameManager());
+        public static GameManager Instance { get; private set; } = new GameManager();
 
-        // Danh sách thực thể
-        public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
-        public List<Tower> Towers { get; private set; } = new List<Tower>();
-        public List<Projectile> Projectiles { get; private set; } = new List<Projectile>();
-        public List<FloatingText> Effects { get; private set; } = new List<FloatingText>(); // Chữ bay
-        public List<Particle> Particles { get; private set; } = new List<Particle>();       // Hiệu ứng nổ
-
-        // Các Manager con
-        public WaveManager WaveMgr { get; private set; } = new WaveManager();
-        public LevelManager LevelMgr { get; private set; } = new LevelManager();
-        public SkillManager SkillMgr { get; private set; } = new SkillManager();
-
-        // =========================================================
-        // 2. TRẠNG THÁI GAME (GAME STATE)
-        // =========================================================
+        // Game State
         public int PlayerMoney { get; set; }
         public int PlayerLives { get; set; }
-
-        // ID tháp đang chọn (-1 là không chọn)
-        public int SelectedTowerType { get; set; } = -1;
-
-        // Tốc độ game (1.0 = thường, 2.0 = nhanh)
         public float GameSpeed { get; set; } = 1.0f;
-
-        // Chế độ Auto Wave
+        public bool IsVictory { get; private set; }
         public bool IsAutoWave { get; set; } = false;
-        private float _autoWaveTimer = 0f;
 
-        // Cờ chiến thắng
-        public bool IsVictory { get; set; } = false;
+        // Selection State
+        public int SelectedTowerType { get; set; } = -1; // -1: None
 
-        // Bản đồ
+        // Managers
+        public WaveManager WaveMgr { get; private set; }
+        public LevelManager LevelMgr { get; private set; }
+        public SkillManager SkillMgr { get; private set; }
+
+        // Entities Lists
+        public List<Tower> Towers { get; private set; }
+        public List<Enemy> Enemies { get; private set; }
+        public List<Projectile> Projectiles { get; private set; }
+        public List<EnemyProjectile> EnemyProjectiles { get; private set; } // Đạn của quái
+        public List<VisualEffect> Effects { get; private set; } // Hiệu ứng hình ảnh
         public List<Point> CurrentMapPath { get; private set; }
 
-        // Random cho hiệu ứng
-        private Random _rnd = new Random();
-
-        private GameManager() { }
-
-        // =========================================================
-        // 3. KHỞI TẠO GAME
-        // =========================================================
-        public void StartGame(int levelId = 1)
+        private GameManager()
         {
-            // Reset toàn bộ list
-            Enemies.Clear();
-            Towers.Clear();
-            Projectiles.Clear();
-            Effects.Clear();
-            Particles.Clear();
+            WaveMgr = new WaveManager();
+            LevelMgr = new LevelManager();
+            SkillMgr = new SkillManager();
 
-            // Reset chỉ số
+            Towers = new List<Tower>();
+            Enemies = new List<Enemy>();
+            Projectiles = new List<Projectile>();
+            EnemyProjectiles = new List<EnemyProjectile>();
+            Effects = new List<VisualEffect>();
+        }
+
+        // =========================================================
+        // 2. GAME FLOW
+        // =========================================================
+        public void StartGame(int levelId)
+        {
+            // Reset State
             PlayerMoney = 650;
             PlayerLives = 20;
             GameSpeed = 1.0f;
-            IsAutoWave = false;
-            _autoWaveTimer = 0f;
             IsVictory = false;
+            IsAutoWave = false;
             SelectedTowerType = -1;
 
-            // Load Map & Reset Manager
+            // Clear Lists
+            Towers.Clear();
+            Enemies.Clear();
+            Projectiles.Clear();
+            EnemyProjectiles.Clear();
+            Effects.Clear();
+
+            // Load Level
             CurrentMapPath = LevelMgr.LoadLevelPath(levelId);
             WaveMgr = new WaveManager();
             SkillMgr = new SkillManager();
         }
 
-        // =========================================================
-        // 4. GAME LOOP: UPDATE (LOGIC)
-        // =========================================================
         public void Update(float deltaTime)
         {
-            // Áp dụng tốc độ game (x2 Speed)
             float scaledDeltaTime = deltaTime * GameSpeed;
 
-            // A. Update Manager con
+            // 1. Update Managers
             SkillMgr.Update(scaledDeltaTime);
-            HandleWaveLogic(scaledDeltaTime);
 
-            // B. Update Quái (Duyệt ngược để xóa an toàn)
+            // 2. Update Wave (Spawn Enemies)
+            if (IsAutoWave && !WaveMgr.IsWaveRunning && Enemies.Count == 0 && !IsVictory)
+            {
+                WaveMgr.StartNextWave();
+            }
+
+            int spawnEnemyId = WaveMgr.Update(scaledDeltaTime);
+            if (spawnEnemyId != -1)
+            {
+                SpawnEnemy(spawnEnemyId);
+            }
+
+            // Check Victory
+            if (!WaveMgr.IsWaveRunning && WaveMgr.CurrentWave >= LevelMgr.MaxWaves && Enemies.Count == 0)
+            {
+                IsVictory = true;
+            }
+
+            // 3. UPDATE ENTITIES
+            UpdateTowers(scaledDeltaTime);
+            UpdateEnemies(scaledDeltaTime);
+            UpdateProjectiles(scaledDeltaTime);
+            UpdateEnemyProjectiles(scaledDeltaTime);
+            UpdateEffects(scaledDeltaTime);
+        }
+
+        // =========================================================
+        // 3. UPDATE LOGIC CHI TIẾT
+        // =========================================================
+
+        private void UpdateTowers(float dt)
+        {
+            foreach (var tower in Towers)
+            {
+                tower.Update(dt);
+            }
+        }
+
+        private void UpdateEnemies(float dt)
+        {
             for (int i = Enemies.Count - 1; i >= 0; i--)
             {
                 var enemy = Enemies[i];
-                enemy.Update(scaledDeltaTime);
+                enemy.Update(dt);
 
+                // --- QUÁI TẤN CÔNG TRỤ ---
+                // Gọi hàm TryAttackNearbyTower (đã có trong Enemy.cs)
+                var projectile = enemy.TryAttackNearbyTower(Towers, dt);
+                if (projectile != null)
+                {
+                    EnemyProjectiles.Add(projectile);
+                }
+
+                // Kiểm tra chết
+                if (enemy.Health <= 0)
+                {
+                    PlayerMoney += enemy.RewardGold;
+                    ShowFloatingText($"+{enemy.RewardGold}", enemy.X, enemy.Y, Color.Gold);
+                    Enemies.RemoveAt(i);
+                    continue;
+                }
+
+                // Kiểm tra về đích
                 if (!enemy.IsActive)
                 {
-                    if (enemy.Health > 0) // Về đích
-                    {
-                        PlayerLives--;
-                        ShowFloatingText("-1 ❤", enemy.X, enemy.Y - 20, Color.Red);
-                    }
-                    else // Bị giết
-                    {
-                        PlayerMoney += enemy.RewardGold;
-                        ShowFloatingText($"+{enemy.RewardGold}G", enemy.X, enemy.Y - 20, Color.Gold);
-                    }
+                    PlayerLives--;
                     Enemies.RemoveAt(i);
                 }
             }
-
-            // C. Update Tháp
-            for (int i = Towers.Count - 1; i >= 0; i--)
-            {
-                Towers[i].Update(scaledDeltaTime);
-                if (!Towers[i].IsActive) Towers.RemoveAt(i); // Xóa tháp nếu bị phá hủy
-            }
-
-            // D. Update Đạn
-            for (int i = Projectiles.Count - 1; i >= 0; i--)
-            {
-                Projectiles[i].Update(scaledDeltaTime);
-                if (!Projectiles[i].IsActive) Projectiles.RemoveAt(i);
-            }
-
-            // E. Update Chữ bay (Effects)
-            for (int i = Effects.Count - 1; i >= 0; i--)
-            {
-                Effects[i].Update(scaledDeltaTime);
-                if (!Effects[i].IsActive) Effects.RemoveAt(i);
-            }
-
-            // F. Update Hạt nổ (Particles)
-            for (int i = Particles.Count - 1; i >= 0; i--)
-            {
-                Particles[i].Update(scaledDeltaTime);
-                if (!Particles[i].IsActive) Particles.RemoveAt(i);
-            }
-            // Giới hạn số lượng hạt để tránh lag
-            if (Particles.Count > 200) Particles.RemoveRange(0, 50);
         }
 
-        private void HandleWaveLogic(float dt)
+        private void UpdateProjectiles(float dt)
         {
-            // 1. Wave đang chạy
-            if (WaveMgr.IsWaveRunning)
+            for (int i = Projectiles.Count - 1; i >= 0; i--)
             {
-                int enemyId = WaveMgr.Update(dt);
-                if (enemyId != -1) SpawnEnemy(enemyId);
+                var p = Projectiles[i];
+                p.Update(dt);
+                if (!p.IsActive) Projectiles.RemoveAt(i);
             }
-            // 2. Hết Wave & Hết quái -> Check Thắng hoặc Nghỉ
-            else if (Enemies.Count == 0)
-            {
-                if (WaveMgr.CurrentWave >= LevelMgr.MaxWaves)
-                {
-                    IsVictory = true;
-                    return;
-                }
+        }
 
-                if (IsAutoWave)
-                {
-                    _autoWaveTimer += dt;
-                    if (_autoWaveTimer >= 3.0f)
-                    {
-                        WaveMgr.StartNextWave();
-                        _autoWaveTimer = 0;
-                        SoundManager.Play("win");
-                    }
-                }
-                else _autoWaveTimer = 0;
+        private void UpdateEnemyProjectiles(float dt)
+        {
+            for (int i = EnemyProjectiles.Count - 1; i >= 0; i--)
+            {
+                var ep = EnemyProjectiles[i];
+                ep.Update(dt);
+                if (!ep.IsActive) EnemyProjectiles.RemoveAt(i);
+            }
+        }
+
+        private void UpdateEffects(float dt)
+        {
+            for (int i = Effects.Count - 1; i >= 0; i--)
+            {
+                Effects[i].Update(dt);
+                if (Effects[i].IsExpired) Effects.RemoveAt(i);
             }
         }
 
         // =========================================================
-        // 5. GAME LOOP: RENDER (VẼ)
+        // 4. RENDER (VẼ)
         // =========================================================
         public void Render(Graphics g)
         {
-            // Vẽ theo lớp: Tháp -> Quái -> Đạn -> Hạt -> Chữ
+            // Vẽ theo lớp (Layer)
             foreach (var tower in Towers) tower.Render(g);
             foreach (var enemy in Enemies) enemy.Render(g);
-            foreach (var proj in Projectiles) proj.Render(g);
-            foreach (var p in Particles) p.Render(g);
-            foreach (var effect in Effects) effect.Render(g);
+            foreach (var p in Projectiles) p.Render(g);
+            foreach (var ep in EnemyProjectiles) ep.Render(g); // Vẽ đạn quái
+            foreach (var eff in Effects) eff.Render(g);        // Vẽ hiệu ứng
         }
 
         // =========================================================
-        // 6. CÁC HÀM HỖ TRỢ & FACTORY
+        // 5. HELPERS (BUILDING & SPAWNING)
         // =========================================================
 
         private void SpawnEnemy(int typeId)
         {
-            if (CurrentMapPath != null && CurrentMapPath.Count > 0)
-            {
-                Enemies.Add(new Enemy(CurrentMapPath, typeId));
-            }
+            if (CurrentMapPath == null) return;
+            Enemies.Add(new Enemy(CurrentMapPath, typeId));
         }
 
-        public void ShowFloatingText(string text, float x, float y, Color color)
+        public bool TryBuildTower(int x, int y)
         {
-            Effects.Add(new FloatingText(text, x, y, color));
-        }
-
-        // --- HỆ THỐNG PARTICLE (HIỆU ỨNG) ---
-        public void CreateExplosion(float x, float y, Color color)
-        {
-            int count = 15;
-            for (int i = 0; i < count; i++)
-            {
-                float angle = (float)(_rnd.NextDouble() * Math.PI * 2);
-                float speed = _rnd.Next(50, 200);
-                float size = _rnd.Next(4, 12);
-                float life = (float)(_rnd.NextDouble() * 0.5 + 0.2);
-                Particles.Add(new Particle(x, y, color, size, speed, angle, life));
-            }
-        }
-
-        public void CreateHitEffect(float x, float y)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                float angle = (float)(_rnd.NextDouble() * Math.PI * 2);
-                Particles.Add(new Particle(x, y, Color.WhiteSmoke, 4, 100, angle, 0.3f));
-            }
-        }
-
-        public void CreateIceEffect(float x, float y)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                float angle = (float)(_rnd.NextDouble() * Math.PI * 2);
-                Particles.Add(new Particle(x, y, Color.Cyan, 5, 80, angle, 0.5f));
-            }
-        }
-
-        // =========================================================
-        // 7. LOGIC XÂY DỰNG (GRID SYSTEM)
-        // =========================================================
-
-        public bool TryBuildTower(float x, float y)
-        {
-            if (SelectedTowerType < 0 || SelectedTowerType >= GameConfig.Towers.Length) return false;
+            if (SelectedTowerType == -1) return false;
 
             var stat = GameConfig.Towers[SelectedTowerType];
-
             if (PlayerMoney >= stat.Price)
             {
                 PlayerMoney -= stat.Price;
-                Towers.Add(new Tower(x, y, SelectedTowerType));
+                Tower newTower = new Tower(x, y, SelectedTowerType);
+                Towers.Add(newTower);
                 return true;
             }
             return false;
         }
 
-        public bool CanPlaceTower(float x, float y)
+        public bool CanPlaceTower(int x, int y)
         {
-            // Check trùng tháp
-            foreach (var tower in Towers)
+            // 1. Kiểm tra đè lên tháp khác
+            foreach (var t in Towers)
             {
-                if (Math.Abs(tower.X - x) < 35 && Math.Abs(tower.Y - y) < 35) return false;
+                if (Math.Abs(t.X - x) < 20 && Math.Abs(t.Y - y) < 20) return false;
             }
-            // Check đè đường đi
+
+            // 2. Kiểm tra đè lên đường đi
             if (IsOnPath(x, y)) return false;
+
+            // 3. Kiểm tra ngoài map (Với Map 800x600)
+            if (x < 20 || x > 780 || y < 20 || y > 580) return false;
 
             return true;
         }
 
-        // --- LOGIC CHECK VA CHẠM ĐƯỜNG ĐI (ĐÃ SỬA LỖI GRID) ---
-        // --- LOGIC CHECK VA CHẠM ĐƯỜNG ĐI (ĐÃ TỐI ƯU HITBOX) ---
         private bool IsOnPath(float x, float y)
         {
             if (CurrentMapPath == null || CurrentMapPath.Count < 2) return false;
 
-            // TWEAK 1: Thu nhỏ vùng va chạm của Tháp (Tower Hitbox)
-            // Thay vì dùng kích thước thật (36px), ta chỉ dùng vùng tâm (10px)
-            // Nghĩa là: Chỉ cần cái "chân đế" ở giữa không chạm đường là được phép xây
-            float coreSize = 10f;
+            float coreSize = 15f;
             RectangleF towerRect = new RectangleF(x - coreSize / 2, y - coreSize / 2, coreSize, coreSize);
-
-            // TWEAK 2: Giảm nhẹ bán kính đường đi (Path Hitbox)
-            // Hình vẽ là 60px (Radius 30), nhưng Logic ta tính là 30px (Radius 15)
-            // Để tạo cảm giác "thoáng" hơn, cho phép tháp lấn nhẹ vào lề đường
-            float pathRadius = 28f;
+            float pathRadius = 28f; // Đường rộng 60px
 
             for (int i = 0; i < CurrentMapPath.Count - 1; i++)
             {
                 Point p1 = CurrentMapPath[i];
                 Point p2 = CurrentMapPath[i + 1];
 
-                // Tạo hình chữ nhật bao quanh đoạn đường
                 float left = Math.Min(p1.X, p2.X) - pathRadius;
                 float right = Math.Max(p1.X, p2.X) + pathRadius;
                 float top = Math.Min(p1.Y, p2.Y) - pathRadius;
                 float bottom = Math.Max(p1.Y, p2.Y) + pathRadius;
 
                 RectangleF pathRect = new RectangleF(left, top, right - left, bottom - top);
-
-                // Kiểm tra giao nhau
-                if (towerRect.IntersectsWith(pathRect))
-                {
-                    return true; // Chặn
-                }
+                if (towerRect.IntersectsWith(pathRect)) return true;
             }
-            return false; // Cho phép xây
+            return false;
         }
 
-        // (Bạn có thể xóa hàm GetDistanceToSegment cũ đi vì không dùng nữa)
+        // =========================================================
+        // 6. EFFECT HELPERS (FIX CÁC LỖI THIẾU HÀM)
+        // =========================================================
+
+        // Tạo hiệu ứng nổ (dùng cho Missile/Cannon)
+        // --- SỬA HÀM NÀY: THÊM THAM SỐ RADIUS ---
+        public void CreateExplosion(float x, float y, float radius)
+        {
+            // Truyền radius vào hiệu ứng
+            Effects.Add(new ExplosionEffect(x, y, radius));
+        }
+
+        // Tạo hiệu ứng băng (dùng cho Ice Tower)
+        public void CreateIceEffect(float x, float y)
+        {
+            Effects.Add(new IceEffect(x, y));
+        }
+
+        // Tạo hiệu ứng trúng đạn nhỏ (dùng cho Sniper/Gun)
+        public void CreateHitEffect(float x, float y)
+        {
+            Effects.Add(new HitEffect(x, y));
+        }
+
+        // Tạo chữ bay (Sửa nhận float x, float y)
+        public void ShowFloatingText(string text, float x, float y, Color color)
+        {
+            Effects.Add(new FloatingText(text, x, y, color));
+        }
     }
 }

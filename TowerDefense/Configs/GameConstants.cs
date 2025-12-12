@@ -25,6 +25,7 @@ namespace TowerDefense.Configs
         public int Damage;
         public float Range;
         public float ReloadTime;
+        public float Cooldown; // <--- ĐÃ THÊM THUỘC TÍNH NÀY
         public int MaxHealth;         // Máu của tháp (để quái đánh)
         public string ProjectileType; // "Arrow", "Bomb", "Ice", "Magic", "Fire"...
         public Color Color;           // Màu đại diện (nếu chưa có ảnh)
@@ -84,35 +85,41 @@ namespace TowerDefense.Configs
         };
 
         // --- DANH SÁCH 20 LOẠI QUÁI ---
+        // --- DANH SÁCH 20 LOẠI QUÁI (ĐÃ BUFF SỨC MẠNH) ---
         public static readonly EnemyStat[] Enemies = new EnemyStat[]
         {
-            // --- TIER 1: QUÁI YẾU (Wave 1-5) ---
-            new EnemyStat { Name="Slime", MaxHealth=30, Speed=80, Reward=5, DamageToTower=0, AttackRange=0, Color=Color.Green },
-            new EnemyStat { Name="Rat", MaxHealth=20, Speed=120, Reward=5, DamageToTower=0, AttackRange=0, Color=Color.Gray },
-            new EnemyStat { Name="Bat", MaxHealth=25, Speed=150, Reward=8, DamageToTower=0, AttackRange=0, CanFly=true, Color=Color.Black }, // Bay
-            new EnemyStat { Name="Goblin", MaxHealth=60, Speed=90, Reward=10, DamageToTower=5, AttackRange=30, Color=Color.DarkGreen }, // Đánh trụ
-            new EnemyStat { Name="Skeleton", MaxHealth=80, Speed=70, Reward=12, DamageToTower=10, AttackRange=30, Color=Color.White },
+    // --- TIER 1: QUÁI YẾU (Wave 1-4) ---
+    new EnemyStat { Name="Slime", MaxHealth=50, Speed=80, Reward=5, DamageToTower=0, AttackRange=0, Color=Color.Green }, // HP 30 -> 50
+    new EnemyStat { Name="Rat", MaxHealth=40, Speed=130, Reward=5, DamageToTower=0, AttackRange=0, Color=Color.Gray },
+    new EnemyStat { Name="Bat", MaxHealth=45, Speed=160, Reward=8, DamageToTower=0, AttackRange=0, CanFly=true, Color=Color.Black },
+    new EnemyStat { Name="Goblin", MaxHealth=150, Speed=90, Reward=15, DamageToTower=10, AttackRange=30, Color=Color.DarkGreen }, // HP 60 -> 150
+    new EnemyStat { Name="Skeleton", MaxHealth=200, Speed=70, Reward=18, DamageToTower=20, AttackRange=30, Color=Color.White },
 
-            // --- TIER 2: QUÁI TRUNG BÌNH (Wave 6-10) ---
-            new EnemyStat { Name="Orc", MaxHealth=150, Speed=60, Reward=20, DamageToTower=20, AttackRange=40, Color=Color.DarkOliveGreen },
-            new EnemyStat { Name="Wolf", MaxHealth=100, Speed=130, Reward=25, DamageToTower=15, AttackRange=30, Color=Color.Gray },
-            new EnemyStat { Name="Spider", MaxHealth=120, Speed=100, Reward=22, DamageToTower=10, AttackRange=30, Color=Color.Brown },
-            new EnemyStat { Name="Ghost", MaxHealth=200, Speed=50, Reward=30, DamageToTower=0, AttackRange=0, Color=Color.LightBlue },
-            new EnemyStat { Name="Witch", MaxHealth=100, Speed=80, Reward=35, DamageToTower=30, AttackRange=150, Color=Color.Purple }, // Đánh xa
+    // --- TIER 2: QUÁI TRUNG BÌNH (Wave 5-9) ---
+    new EnemyStat { Name="Orc", MaxHealth=400, Speed=60, Reward=30, DamageToTower=40, AttackRange=40, Color=Color.DarkOliveGreen }, // HP 150 -> 400
+    new EnemyStat { Name="Wolf", MaxHealth=250, Speed=140, Reward=35, DamageToTower=25, AttackRange=30, Color=Color.Gray },
+    new EnemyStat { Name="Spider", MaxHealth=300, Speed=110, Reward=32, DamageToTower=20, AttackRange=30, Color=Color.Brown },
+    new EnemyStat { Name="Ghost", MaxHealth=350, Speed=60, Reward=40, DamageToTower=0, AttackRange=0, Color=Color.LightBlue },
+    new EnemyStat { Name="Witch", MaxHealth=250, Speed=90, Reward=50, DamageToTower=50, AttackRange=150, Color=Color.Purple },
 
-            // --- TIER 3: QUÁI MẠNH (Wave 11-15) ---
-            new EnemyStat { Name="Troll", MaxHealth=500, Speed=40, Reward=50, DamageToTower=50, AttackRange=50, Color=Color.DarkCyan },
-            new EnemyStat { Name="Gargoyle", MaxHealth=300, Speed=110, Reward=60, DamageToTower=40, AttackRange=40, CanFly=true, Color=Color.DarkSlateBlue },
-            new EnemyStat { Name="Vampire", MaxHealth=350, Speed=120, Reward=70, DamageToTower=40, AttackRange=40, Color=Color.Red },
-            new EnemyStat { Name="Golem", MaxHealth=1000, Speed=30, Reward=100, DamageToTower=100, AttackRange=40, Color=Color.SandyBrown }, // Chuyên phá trụ
-            new EnemyStat { Name="Assassin", MaxHealth=200, Speed=200, Reward=80, DamageToTower=50, AttackRange=30, Color=Color.Black },
+    // --- TIER 3: QUÁI MẠNH (Wave 10-14) ---
+    new EnemyStat { Name="Troll", MaxHealth=1500, Speed=45, Reward=80, DamageToTower=100, AttackRange=50, Color=Color.DarkCyan }, // Tanker hồi máu
+    new EnemyStat { Name="Gargoyle", MaxHealth=800, Speed=120, Reward=90, DamageToTower=60, AttackRange=40, CanFly=true, Color=Color.DarkSlateBlue },
+    new EnemyStat { Name="Vampire", MaxHealth=1000, Speed=130, Reward=100, DamageToTower=60, AttackRange=40, Color=Color.Red },
+    new EnemyStat { Name="Golem", MaxHealth=3000, Speed=35, Reward=150, DamageToTower=200, AttackRange=40, Color=Color.SandyBrown }, // Kẻ hủy diệt tháp
+    new EnemyStat { Name="Assassin", MaxHealth=600, Speed=220, Reward=120, DamageToTower=80, AttackRange=30, Color=Color.Black }, // Chạy cực nhanh
 
-            // --- TIER 4: BOSS & SIÊU QUÁI (Wave 16-20) ---
-            new EnemyStat { Name="Cyclops", MaxHealth=2000, Speed=50, Reward=200, DamageToTower=150, AttackRange=60, Color=Color.DarkOrange },
-            new EnemyStat { Name="Hydra", MaxHealth=3000, Speed=40, Reward=300, DamageToTower=100, AttackRange=100, Color=Color.DarkGreen },
-            new EnemyStat { Name="Phoenix", MaxHealth=1500, Speed=150, Reward=400, DamageToTower=80, AttackRange=100, CanFly=true, Color=Color.OrangeRed },
-            new EnemyStat { Name="Titan", MaxHealth=5000, Speed=20, Reward=500, DamageToTower=500, AttackRange=60, Color=Color.DarkBlue }, // One hit trụ
-            new EnemyStat { Name="DEMON KING", MaxHealth=10000, Speed=60, Reward=1000, DamageToTower=200, AttackRange=200, Color=Color.Crimson }, // BOSS CUỐI
+    // --- TIER 4: BOSS & SIÊU QUÁI (Wave 15+) ---
+    // Cyclops (Mini Boss)
+    new EnemyStat { Name="Cyclops", MaxHealth=8000, Speed=55, Reward=300, DamageToTower=300, AttackRange=80, Color=Color.DarkOrange }, 
+    // Hydra (Hồi máu)
+    new EnemyStat { Name="Hydra", MaxHealth=12000, Speed=45, Reward=500, DamageToTower=200, AttackRange=120, Color=Color.DarkGreen }, 
+    // Phoenix (Bay & Nhanh)
+    new EnemyStat { Name="Phoenix", MaxHealth=6000, Speed=180, Reward=600, DamageToTower=150, AttackRange=150, CanFly=true, Color=Color.OrangeRed }, 
+    // Titan (One-hit Tháp)
+    new EnemyStat { Name="Titan", MaxHealth=20000, Speed=25, Reward=1000, DamageToTower=1000, AttackRange=80, Color=Color.DarkBlue }, 
+    // FINAL BOSS
+    new EnemyStat { Name="DEMON KING", MaxHealth=50000, Speed=70, Reward=5000, DamageToTower=500, AttackRange=250, Color=Color.Crimson },
         };
     }
 }

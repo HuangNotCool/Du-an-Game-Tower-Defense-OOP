@@ -1,175 +1,120 @@
 ﻿using System;
 using System.Drawing;
-using System.Collections.Generic; // Để dùng List
-using TowerDefense.Core;
 using TowerDefense.Entities.Enemies;
+using TowerDefense.Entities.Towers;
 using TowerDefense.Managers;
 
 namespace TowerDefense.Entities
 {
-    public class Projectile : BaseEntity
+    public enum ProjectileType { Bullet, Missile, Laser, Ice }
+
+    public class Projectile
     {
+        public float X { get; private set; }
+        public float Y { get; private set; }
+        public bool IsActive { get; private set; } = true;
+
         private Enemy _target;
         private int _damage;
-        private float _speed = 600f;
-        private string _type; // "Arrow", "Bomb", "Ice", "Magic", "Fire"
-        private float _rotation = 0f;
+        private float _speed;
+        private ProjectileType _type;
+        private float _aoeRadius; // Bán kính nổ (nếu là Missile)
 
-        public Projectile(float x, float y, Enemy target, int damage, string type)
+        public Projectile(float x, float y, Enemy target, int damage, float speed, ProjectileType type, float aoeRadius = 0)
         {
-            this.X = x; this.Y = y;
-            this.Width = 16; this.Height = 16;
+            X = x; Y = y;
             _target = target;
             _damage = damage;
+            _speed = speed;
             _type = type;
-
-            // Đạn tên lửa/phép bay chậm hơn chút để nhìn cho rõ
-            if (_type == "Bomb" || _type == "Rocket") _speed = 400f;
+            _aoeRadius = aoeRadius;
         }
 
-        public override void Update(float deltaTime)
+        public void Update(float deltaTime)
         {
-            // Nếu mục tiêu chết mà không phải đạn nổ -> Hủy đạn
-            // (Đạn nổ thì vẫn bay đến vị trí cũ để nổ)
-            if ((_target == null || !_target.IsActive) && _type != "Bomb" && _type != "Rocket")
+            if (_target == null || !_target.IsActive)
             {
-                this.IsActive = false;
+                IsActive = false;
                 return;
             }
 
-            // Tính hướng
-            // Lưu ý: Nếu target chết, ta vẫn lấy tọa độ cuối cùng của nó (cần lưu lastPos nếu muốn chuẩn xác hơn)
-            // Ở đây đơn giản hóa: nếu target null thì hủy luôn cho đỡ lỗi.
-            if (_target == null) { IsActive = false; return; }
-
+            // Hướng bay
             float dx = _target.X - X;
             float dy = _target.Y - Y;
-            float distance = (float)Math.Sqrt(dx * dx + dy * dy);
+            float dist = (float)Math.Sqrt(dx * dx + dy * dy);
 
-            _rotation = (float)(Math.Atan2(dy, dx) * 180 / Math.PI);
+            // Tốc độ bay
+            float move = _speed * deltaTime;
 
-            // VA CHẠM
-            if (distance < 15f)
+            // Nếu chạm mục tiêu
+            if (dist <= move)
             {
                 HitTarget();
-                this.IsActive = false;
                 return;
             }
 
             // Di chuyển
-            float moveX = (dx / distance) * _speed * deltaTime;
-            float moveY = (dy / distance) * _speed * deltaTime;
-            X += moveX; Y += moveY;
+            X += (dx / dist) * move;
+            Y += (dy / dist) * move;
         }
 
         private void HitTarget()
         {
-            // 1. Xử lý sát thương chính
+            IsActive = false;
+
             if (_target != null && _target.IsActive)
             {
-                _target.TakeDamage(_damage);
-
-                // Hiệu ứng riêng cho từng loại đạn
-                ApplySpecialEffects(_target);
-            }
-
-            // --- GỌI HIỆU ỨNG VISUAL ---
-            if (_type == "Bomb" || _type == "Rocket")
-            {
-                // Nổ cam đỏ
-                GameManager.Instance.CreateExplosion(X, Y, Color.OrangeRed);
-            }
-            else if (_type == "Ice")
-            {
-                // Nổ băng xanh
-                GameManager.Instance.CreateIceEffect(X, Y);
-            }
-            else if (_type == "Magic")
-            {
-                // Nổ tím
-                GameManager.Instance.CreateExplosion(X, Y, Color.Purple);
-            }
-            else
-            {
-                // Bắn thường (Mũi tên) -> Bụi trắng nhỏ
-                GameManager.Instance.CreateHitEffect(X, Y);
-            }
-
-            // 2. Xử lý nổ lan (Area of Effect) cho Bomb/Rocket
-            if (_type == "Bomb" || _type == "Rocket" || _type == "Fire")
-            {
-                Explode();
-            }
-        }
-
-        private void ApplySpecialEffects(Enemy enemy)
-        {
-            switch (_type)
-            {
-                case "Ice": // Làm chậm 50% trong 2 giây
-                    enemy.ApplySlow(2.0f, 0.5f);
-                    GameManager.Instance.ShowFloatingText("Slowed!", enemy.X, enemy.Y - 30, Color.Cyan);
-                    break;
-
-                case "Fire": // Có thể thêm logic đốt máu theo thời gian (Dot)
-                    // enemy.ApplyBurn(...);
-                    break;
-
-                case "Magic": // Có thể thêm logic xuyên giáp (tăng damage nếu giáp to)
-                    break;
-            }
-        }
-
-        private void Explode()
-        {
-            float explosionRadius = 100f; // Bán kính nổ
-            int aoeDamage = _damage / 2;  // Sát thương lan (50% sát thương gốc)
-
-            // Hiệu ứng nổ
-            GameManager.Instance.ShowFloatingText("BOOM!", X, Y, Color.OrangeRed);
-            SoundManager.Play("explosion");
-
-            // Duyệt qua tất cả quái để xem con nào đứng gần
-            // (Lưu ý: Dùng ToList() để tạo bản sao danh sách, tránh lỗi khi đang duyệt mà list thay đổi)
-            foreach (var enemy in new List<Enemy>(GameManager.Instance.Enemies))
-            {
-                if (!enemy.IsActive) continue;
-
-                // Tính khoảng cách từ vụ nổ đến quái
-                float dist = (float)Math.Sqrt(Math.Pow(enemy.X - X, 2) + Math.Pow(enemy.Y - Y, 2));
-
-                if (dist <= explosionRadius)
+                if (_type == ProjectileType.Missile)
                 {
-                    enemy.TakeDamage(aoeDamage);
+                    // --- FIX LỖI TẠI ĐÂY: Truyền bán kính nổ (aoeRadius) thay vì Color ---
+                    // Tham số: X, Y, Radius
+                    GameManager.Instance.CreateExplosion(X, Y, _aoeRadius > 0 ? _aoeRadius : 60f);
 
-                    // Nếu là Fire thì lan cả hiệu ứng đốt, Ice lan hiệu ứng băng...
-                    if (_type == "Ice") enemy.ApplySlow(2.0f, 0.5f);
+                    // Gây dame lan
+                    ApplyAreaDamage(X, Y, _aoeRadius > 0 ? _aoeRadius : 60f, _damage);
+                }
+                else if (_type == ProjectileType.Ice)
+                {
+                    GameManager.Instance.CreateIceEffect(X, Y);
+                    _target.TakeDamage(_damage);
+                    _target.ApplySlow(2.0f, 0.5f); // Làm chậm 50% trong 2s
+                }
+                else
+                {
+                    // Đạn thường
+                    GameManager.Instance.CreateHitEffect(X, Y);
+                    _target.TakeDamage(_damage);
                 }
             }
         }
 
-        public override void Render(Graphics g)
+        private void ApplyAreaDamage(float x, float y, float radius, int damage)
         {
-            Image sprite = ResourceManager.GetImage(_type); // Arrow, Bomb, Ice...
-
-            if (sprite != null)
+            // Tìm tất cả quái trong vùng nổ
+            foreach (var enemy in GameManager.Instance.Enemies)
             {
-                var state = g.Save();
-                g.TranslateTransform(X, Y);
-                g.RotateTransform(_rotation);
-                g.DrawImage(sprite, -Width / 2, -Height / 2, Width, Height);
-                g.Restore(state);
+                float dx = enemy.X - x;
+                float dy = enemy.Y - y;
+                if (dx * dx + dy * dy <= radius * radius)
+                {
+                    enemy.TakeDamage(damage);
+                }
             }
-            else
-            {
-                // Fallback màu sắc
-                Color c = Color.Black;
-                if (_type == "Ice") c = Color.Cyan;
-                if (_type == "Fire") c = Color.Orange;
-                if (_type == "Magic") c = Color.Purple;
+        }
 
-                g.FillEllipse(new SolidBrush(c), X - 4, Y - 4, 8, 8);
+        public void Render(Graphics g)
+        {
+            float size = 6;
+            Brush brush = Brushes.Yellow;
+
+            switch (_type)
+            {
+                case ProjectileType.Missile: brush = Brushes.OrangeRed; size = 8; break;
+                case ProjectileType.Ice: brush = Brushes.Cyan; size = 6; break;
+                case ProjectileType.Laser: brush = Brushes.Lime; size = 4; break;
             }
+
+            g.FillEllipse(brush, X - size / 2, Y - size / 2, size, size);
         }
     }
 }

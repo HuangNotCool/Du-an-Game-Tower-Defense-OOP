@@ -213,7 +213,7 @@ namespace TowerDefense.Forms.GameLevels
             g.DrawString("SKILLS", _uiTitleFont, Brushes.Gray, 445, 612);
 
             UpdateSkillButtonState();
-            if (GameManager.Instance.PlayerLives <= 0) HandleGameOver(g);
+           // if (GameManager.Instance.PlayerLives <= 0) HandleGameOver(g);
         }
 
         private void UpdateSkillButtonState()

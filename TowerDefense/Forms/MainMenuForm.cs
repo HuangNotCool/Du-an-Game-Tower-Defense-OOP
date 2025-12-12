@@ -4,12 +4,15 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using TowerDefense.Forms.GameLevels;
 using TowerDefense.Forms.Reports;
+using TowerDefense.Managers;
 using TowerDefense.Utils;
 
 namespace TowerDefense.Forms
 {
     public partial class MainMenuForm : Form
     {
+
+
         public MainMenuForm()
         {
             // 1. Gọi hàm của Visual Studio (trong Designer.cs)
@@ -17,6 +20,7 @@ namespace TowerDefense.Forms
 
             // 2. Cấu hình giao diện thủ công của chúng ta
             SetupMenuUI();
+            SoundManager.PlayMusic("menu_theme.wav");
         }
 
         private void SetupMenuUI()

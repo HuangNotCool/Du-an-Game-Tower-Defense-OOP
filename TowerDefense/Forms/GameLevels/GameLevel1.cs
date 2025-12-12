@@ -44,6 +44,7 @@ namespace TowerDefense.Forms.GameLevels
         // =========================================================
         public GameLevel1(int levelId)
         {
+            SoundManager.PlayMusic("battle_theme.wav");
             // Cấu hình Form
             this.Text = $"Tower Defense - Level {levelId}";
 
@@ -127,6 +128,41 @@ namespace TowerDefense.Forms.GameLevels
 
             // E. Vẽ lại màn hình (Sẽ gọi hàm OnPaint bên file Render.cs)
             this.Invalidate();
+        }
+
+        // --- HÀM XỬ LÝ KẾT QUẢ MỚI ---
+        private void ShowResultForm(bool isVictory)
+        {
+            // Âm thanh
+            if (isVictory) SoundManager.Play("win");
+            else SoundManager.Play("lose");
+
+            // Hiện Form Kết Quả
+            using (var resultForm = new ResultForm(isVictory,
+                GameManager.Instance.WaveMgr.CurrentWave,
+                GameManager.Instance.PlayerMoney))
+            {
+                if (resultForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Lưu điểm
+                    HighScoreManager.SaveScore(resultForm.PlayerName, (GameManager.Instance.PlayerMoney / 10) + (GameManager.Instance.WaveMgr.CurrentWave * 100));
+                    HistoryManager.SaveLog(isVictory, GameManager.Instance.WaveMgr.CurrentWave);
+
+                    if (resultForm.IsRetry)
+                    {
+                        // Chơi lại (Reset Game)
+                        GameManager.Instance.StartGame(GameManager.Instance.LevelMgr.CurrentLevelId);
+                        _lastLives = GameManager.Instance.PlayerLives;
+                        SelectTower(-1);
+                        _gameTimer.Start();
+                    }
+                    else
+                    {
+                        // Về Menu
+                        this.Close();
+                    }
+                }
+            }
         }
 
         // Logic điều khiển nút Start Wave (Tắt/Bật/Auto)

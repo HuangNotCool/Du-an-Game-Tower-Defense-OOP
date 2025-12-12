@@ -52,5 +52,29 @@ namespace TowerDefense.Managers
                 catch { }
             }
         }
+
+        // Thêm biến riêng cho nhạc nền
+        private static SoundPlayer _bgmPlayer;
+
+        public static void PlayMusic(string fileName)
+        {
+            try
+            {
+                string path = Path.Combine(_basePath, fileName);
+                if (File.Exists(path))
+                {
+                    if (_bgmPlayer != null) _bgmPlayer.Stop(); // Dừng bài cũ
+
+                    _bgmPlayer = new SoundPlayer(path);
+                    _bgmPlayer.PlayLooping(); // Phát lặp lại liên tục
+                }
+            }
+            catch { }
+        }
+
+        public static void StopMusic()
+        {
+            if (_bgmPlayer != null) _bgmPlayer.Stop();
+        }
     }
 }

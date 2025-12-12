@@ -1,81 +1,128 @@
-﻿using System.IO;
-using System.Linq; // Cần dùng Linq để tìm ID tháp
-using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization; // Dùng XML có sẵn, không cần System.Web
 using TowerDefense.Managers;
 using TowerDefense.Entities.Towers;
-using TowerDefense.Configs; // Để tra cứu GameConfig
 
 namespace TowerDefense.Data
 {
+    // Cấu trúc dữ liệu để lưu trữ (Public để XML đọc được)
+    public class GameSaveData
+    {
+        public int LevelId { get; set; }
+        public int Wave { get; set; }
+        public int Money { get; set; }
+        public int Lives { get; set; }
+        public List<TowerSaveData> Towers { get; set; } = new List<TowerSaveData>();
+    }
+
+    public class TowerSaveData
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+        public int TypeId { get; set; }
+        public int Level { get; set; }
+    }
+
     public static class SaveLoadSystem
     {
-        private static string _filePath = "savegame.json";
+        private static string _savePath = "savegame.xml"; // Đổi đuôi file thành XML
 
         public static void SaveGame()
         {
-            var data = new GameSaveData
+            try
             {
-                Money = GameManager.Instance.PlayerMoney,
-                Lives = GameManager.Instance.PlayerLives,
-                CurrentWave = GameManager.Instance.WaveMgr.CurrentWave,
-
-                // --- SỬA DÒNG NÀY: Lấy Level hiện tại từ LevelManager ---
-                LevelId = GameManager.Instance.LevelMgr.CurrentLevelId
-            };
-
-            foreach (var tower in GameManager.Instance.Towers)
-            {
-                // SỬA: Lấy trực tiếp Name của tháp ("Archer", "Cannon"...)
-                data.Towers.Add(new TowerData
+                var data = new GameSaveData
                 {
-                    Type = tower.Name,
-                    X = tower.X,
-                    Y = tower.Y
-                });
-            }
+                    LevelId = GameManager.Instance.LevelMgr.CurrentLevelId,
+                    Wave = GameManager.Instance.WaveMgr.CurrentWave,
+                    Money = GameManager.Instance.PlayerMoney,
+                    Lives = GameManager.Instance.PlayerLives
+                };
 
-            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
+                // Lưu danh sách tháp đang hoạt động
+                foreach (var t in GameManager.Instance.Towers)
+                {
+                    if (!t.IsActive) continue;
+                    data.Towers.Add(new TowerSaveData
+                    {
+                        X = t.X,
+                        Y = t.Y,
+                        TypeId = t.TypeId,
+                        Level = t.Level
+                    });
+                }
+
+                // Ghi ra file XML
+                XmlSerializer serializer = new XmlSerializer(typeof(GameSaveData));
+                using (StreamWriter writer = new StreamWriter(_savePath))
+                {
+                    serializer.Serialize(writer, data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi lưu game: " + ex.Message);
+            }
         }
 
         public static void LoadGame()
         {
-            if (!File.Exists(_filePath)) return;
-
-            string json = File.ReadAllText(_filePath);
-            var data = JsonConvert.DeserializeObject<GameSaveData>(json);
-            if (data == null) return;
-
-            // Reset Game
-            GameManager.Instance.StartGame(data.LevelId);
-
-            // Khôi phục chỉ số
-            GameManager.Instance.PlayerMoney = data.Money;
-            GameManager.Instance.PlayerLives = data.Lives;
-
-            // Khôi phục Wave (Cần hack nhẹ biến CurrentWave trong WaveManager nếu nó là private set)
-            // Hoặc tạo hàm SetWave trong WaveManager. 
-            // Tạm thời ta bỏ qua việc set lại Wave chính xác để tránh lỗi access modifier, 
-            // hoặc bạn cần sửa WaveManager: public int CurrentWave { get; set; }
-
-            // Khôi phục Tháp
-            foreach (var tData in data.Towers)
+            if (!File.Exists(_savePath))
             {
-                // Tìm ID tháp dựa trên Tên (Type)
-                int typeId = 0; // Mặc định là 0 (Archer)
+                System.Windows.Forms.MessageBox.Show("Chưa có file save nào!");
+                return;
+            }
 
-                for (int i = 0; i < GameConfig.Towers.Length; i++)
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(GameSaveData));
+                GameSaveData data;
+
+                using (StreamReader reader = new StreamReader(_savePath))
                 {
-                    if (GameConfig.Towers[i].Name == tData.Type)
-                    {
-                        typeId = i;
-                        break;
-                    }
+                    data = (GameSaveData)serializer.Deserialize(reader);
                 }
 
-                // Tạo tháp mới bằng ID (Constructor chuẩn Data-Driven)
-                var newTower = new Tower(tData.X, tData.Y, typeId);
-                GameManager.Instance.Towers.Add(newTower);
+                if (data != null)
+                {
+                    // 1. Khôi phục thông số Game
+                    GameManager.Instance.StartGame(data.LevelId);
+                    GameManager.Instance.PlayerMoney = data.Money;
+                    GameManager.Instance.PlayerLives = data.Lives;
+
+                    // (Lưu ý: WaveManager cần reset về wave đã lưu nếu muốn chuẩn xác)
+
+                    // 2. Khôi phục Tháp
+                    GameManager.Instance.Towers.Clear();
+
+                    foreach (var tData in data.Towers)
+                    {
+                        GameManager.Instance.SelectedTowerType = tData.TypeId;
+
+                        // Ép kiểu float -> int
+                        int buildX = (int)tData.X;
+                        int buildY = (int)tData.Y;
+
+                        if (GameManager.Instance.TryBuildTower(buildX, buildY))
+                        {
+                            var newTower = GameManager.Instance.Towers[GameManager.Instance.Towers.Count - 1];
+                            // Nâng cấp lại cấp độ
+                            for (int i = 1; i < tData.Level; i++)
+                            {
+                                newTower.Upgrade();
+                            }
+                        }
+                    }
+
+                    GameManager.Instance.SelectedTowerType = -1; // Reset selection
+                    System.Windows.Forms.MessageBox.Show("Đã load game thành công!");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("File save lỗi: " + ex.Message);
             }
         }
     }
