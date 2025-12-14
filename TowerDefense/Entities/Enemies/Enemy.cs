@@ -41,7 +41,7 @@ namespace TowerDefense.Entities.Enemies
             this.AttackRange = stat.AttackRange;
             this.Color = stat.Color;
 
-            this.Width = 36; this.Height = 36;
+            this.Width = 40; this.Height = 40;
             _movement = new MovementComponent(path, stat.Speed);
 
             if (path != null && path.Count > 0)

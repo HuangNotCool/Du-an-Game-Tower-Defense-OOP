@@ -15,6 +15,9 @@ namespace TowerDefense.Forms.GameLevels
         // 1. KHAI BÁO BIẾN (SHARED STATE)
         // =========================================================
 
+        private readonly System.Diagnostics.Stopwatch _sw = new System.Diagnostics.Stopwatch();
+        private long _lastMs = 0;
+
         // --- HỆ THỐNG ---
         private Timer _gameTimer;
         private bool _isPaused = false;
@@ -95,9 +98,20 @@ namespace TowerDefense.Forms.GameLevels
         {
             if (_isPaused) return;
 
-            // A. Update Logic Game
-            // GameManager tự xử lý nhân với GameSpeed (x2 Speed)
-            GameManager.Instance.Update(0.016f);
+            if (!_sw.IsRunning)
+            {
+                _sw.Start();
+                _lastMs = _sw.ElapsedMilliseconds;
+            }
+
+            long now = _sw.ElapsedMilliseconds;
+            float dt = (now - _lastMs) / 1000f;
+            _lastMs = now;
+
+            // chống dt quá lớn khi bị khựng
+            if (dt > 0.05f) dt = 0.05f;
+
+            GameManager.Instance.Update(dt);
 
             // B. Logic Hiệu ứng Màn hình đỏ (Khi mất máu)
             if (GameManager.Instance.PlayerLives < _lastLives)

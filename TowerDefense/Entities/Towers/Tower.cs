@@ -31,8 +31,8 @@ namespace TowerDefense.Entities.Towers
         {
             this.X = x;
             this.Y = y;
-            this.Width = 32;
-            this.Height = 32;
+            this.Width = 500;
+            this.Height = 500;
             this.TypeId = typeId;
 
             // Load chỉ số từ Config
@@ -152,7 +152,7 @@ namespace TowerDefense.Entities.Towers
             Image img = ResourceManager.GetImage(Name);
             if (img != null)
             {
-                g.DrawImage(img, X - 16, Y - 32, 32, 32);
+                g.DrawImage(img, X - 30, Y - 60, 60, 60);
             }
             else
             {

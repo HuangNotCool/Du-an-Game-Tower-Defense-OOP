@@ -62,22 +62,23 @@ namespace TowerDefense.Forms
 
             // --- THÊM NỘI DUNG ---
             AddHeader(pnlContent, "1. STORY (CỐT TRUYỆN)");
-            AddText(pnlContent, "Vương quốc đang bị tấn công bởi quân đoàn quái vật hung hãn. Là chỉ huy tối cao, bạn phải xây dựng hệ thống phòng thủ tháp (Tower Defense) để ngăn chặn chúng xâm nhập vào Nhà Chính (Base).");
+            AddText(pnlContent, "Vương quốc đang bị tấn công bởi quân đoàn quái vật hung hãn. Là chỉ huy tối cao, bạn phải xây dựng hệ thống phòng thủ tháp để ngăn chặn chúng xâm nhập vào Base, bảo vệ người dân của mình.");
 
             AddHeader(pnlContent, "2. HOW TO PLAY (CÁCH CHƠI)");
+            AddText(pnlContent, "- Dùng chuột để tương tác");
             AddText(pnlContent, "- Sử dụng Vàng (Gold) để xây tháp.");
             AddText(pnlContent, "- Click vào tháp đã xây để Nâng cấp hoặc Bán.");
             AddText(pnlContent, "- Ngăn chặn quái đi hết bản đồ. Nếu mạng về 0, bạn thua.");
-            AddText(pnlContent, "- Sử dụng Kỹ năng (Meteor, Freeze) khi nguy cấp.");
+            AddText(pnlContent, "- Có thể sử dụng Kỹ năng (Meteor, Freeze) khi nguy cấp.");
 
             AddHeader(pnlContent, "3. FEATURES (TÍNH NĂNG)");
-            AddText(pnlContent, "★ 10 Bản đồ với độ khó tăng dần (Cỏ, Cát, Tuyết, Lửa).");
+            AddText(pnlContent, "★ 4 Bản đồ với độ khó tăng dần (Cỏ, Cát, Tuyết, Lửa).");
             AddText(pnlContent, "★ 10 Loại tháp: Archer, Cannon, Sniper, Ice, Magic...");
-            AddText(pnlContent, "★ 20 Loại quái: Bao gồm quái bay và quái phá trụ.");
-            AddText(pnlContent, "★ Hệ thống Shop: Dùng Kim Cương để nâng cấp sức mạnh vĩnh viễn.");
+            AddText(pnlContent, "★ 20 Loại quái: Nhiều loại quái đa dạng với chỉ số sức mạnh khác nhau");
+            AddText(pnlContent, "★ Hệ thống Shop: Dùng Kim Cương để nâng cấp sức mạnh vĩnh viễn, mua bổ trợ.");
 
             AddHeader(pnlContent, "4. CREDITS");
-            AddText(pnlContent, "Developed by: [TÊN CỦA BẠN]");
+            AddText(pnlContent, "Developed by: Nhóm 24( Nguyễn Ngọc Hoàng, Trần Huy Hoàng)");
             AddText(pnlContent, "Tools: Visual Studio 2022, C# WinForms.");
 
             // Khoảng trống cuối cùng
