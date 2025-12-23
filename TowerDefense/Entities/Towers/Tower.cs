@@ -39,7 +39,7 @@ namespace TowerDefense.Entities.Towers
             var stat = GameConfig.Towers[typeId];
             this.Name = stat.Name;
             this.Range = stat.Range;
-            this.Cooldown = stat.Cooldown;
+            this.Cooldown = stat.ReloadTime;
             this.BaseDamage = stat.Damage;
             this.Price = stat.Price;
             this.Color = stat.Color;
