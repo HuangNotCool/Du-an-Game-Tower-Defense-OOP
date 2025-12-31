@@ -58,7 +58,7 @@ namespace TowerDefense.Managers
         public void StartGame(int levelId)
         {
             // Reset State
-            PlayerMoney = 650;
+            PlayerMoney = 6500;
             PlayerLives = 20;
             GameSpeed = 1.0f;
             IsVictory = false;

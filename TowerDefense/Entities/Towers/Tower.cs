@@ -20,10 +20,11 @@ namespace TowerDefense.Entities.Towers
         public int SellValue { get; private set; }
         public Color Color { get; private set; }
 
-        // Level
         public int Level { get; private set; } = 1;
 
-        // Trạng thái chiến đấu
+        // BIẾN LƯU TÊN ẢNH ĐẠN CỦA THÁP NÀY
+        public string BulletImageKey { get; private set; }
+
         private float _fireTimer = 0f;
         public Enemy Target { get; private set; }
 
@@ -31,8 +32,8 @@ namespace TowerDefense.Entities.Towers
         {
             this.X = x;
             this.Y = y;
-            this.Width = 500;
-            this.Height = 500;
+            this.Width = 60;
+            this.Height = 60;
             this.TypeId = typeId;
 
             // Load chỉ số từ Config
@@ -44,6 +45,10 @@ namespace TowerDefense.Entities.Towers
             this.Price = stat.Price;
             this.Color = stat.Color;
 
+            // ĐỌC TÊN ẢNH ĐẠN TỪ CONFIG
+            this.BulletImageKey = stat.BulletImage;
+            if (string.IsNullOrEmpty(this.BulletImageKey)) this.BulletImageKey = "Arrow";
+
             this.UpgradeCost = (int)(Price * 0.7f);
             this.SellValue = (int)(Price * 0.5f);
         }
@@ -52,7 +57,7 @@ namespace TowerDefense.Entities.Towers
         {
             _fireTimer -= deltaTime;
 
-            // 1. Tìm mục tiêu nếu chưa có hoặc mục tiêu ra khỏi tầm/chết
+            // 1. Tìm mục tiêu
             if (Target == null || !Target.IsActive || GetDistance(Target) > Range)
             {
                 Target = FindTarget();
@@ -68,38 +73,30 @@ namespace TowerDefense.Entities.Towers
 
         private void Attack()
         {
-            // Xác định loại đạn dựa trên tên tháp
+            // Thiết lập loại đạn và hiệu ứng
             ProjectileType pType = ProjectileType.Bullet;
             float pSpeed = 400f;
             float aoe = 0f;
 
-            if (Name == "Sniper") { pSpeed = 800f; }
-            else if (Name == "Cannon")
-            {
-                pType = ProjectileType.Missile;
-                pSpeed = 300f;
-                aoe = 60f; // Bán kính nổ
-            }
+            // Cấu hình tốc độ và loại đạn (Logic hình ảnh đã được xử lý bởi BulletImageKey)
+            if (Name == "Sniper") { pSpeed = 900f; }
+            else if (Name == "Minigun") { pSpeed = 600f; }
+            else if (Name == "Cannon") { pType = ProjectileType.Missile; pSpeed = 300f; aoe = 60f; }
+            else if (Name == "Rocket") { pType = ProjectileType.Missile; pSpeed = 350f; aoe = 80f; }
             else if (Name == "Ice") { pType = ProjectileType.Ice; pSpeed = 350f; }
-            else if (Name == "Minigun") { pType = ProjectileType.Bullet; pSpeed = 500f; }
             else if (Name == "God")
             {
-                pType = ProjectileType.Missile;
-                aoe = 100f; // Nổ to
-
-                // --- FIX LỖI TẠI ĐÂY: Tháp God tạo vụ nổ ngay lập tức ---
-                // Truyền bán kính 100f thay vì Color
+                // Tháp God tấn công ngay lập tức (không cần đạn bay)
                 GameManager.Instance.CreateExplosion(Target.X, Target.Y, 100f);
+                Target.TakeDamage(BaseDamage);
+                return;
             }
 
-            // Tạo đạn bay
-            var proj = new Projectile(X, Y, Target, BaseDamage, pSpeed, pType, aoe);
+            // TẠO ĐẠN: Truyền BulletImageKey vào để Projectile biết dùng ảnh nào
+            var proj = new Projectile(X, Y, Target, BaseDamage, pSpeed, pType, aoe, this.BulletImageKey);
 
             if (GameManager.Instance.Projectiles != null)
                 GameManager.Instance.Projectiles.Add(proj);
-
-            // Âm thanh
-            // SoundManager.Play("shoot");
         }
 
         private Enemy FindTarget()
@@ -107,14 +104,11 @@ namespace TowerDefense.Entities.Towers
             Enemy best = null;
             float minDst = float.MaxValue;
 
-            // Ưu tiên bắn con gần đích nhất (đã đi được quãng đường dài nhất)
-            // Hoặc đơn giản là con gần tháp nhất
             foreach (var e in GameManager.Instance.Enemies)
             {
                 float dst = GetDistance(e);
                 if (dst <= Range)
                 {
-                    // Logic chọn mục tiêu: Gần nhất
                     if (dst < minDst)
                     {
                         minDst = dst;
@@ -137,8 +131,7 @@ namespace TowerDefense.Entities.Towers
             Level++;
             BaseDamage = (int)(BaseDamage * 1.5f);
             Range += 20;
-            Cooldown *= 0.9f; // Bắn nhanh hơn 10%
-
+            Cooldown *= 0.9f;
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             SellValue += (int)(UpgradeCost * 0.4f);
         }
@@ -157,7 +150,7 @@ namespace TowerDefense.Entities.Towers
             else
             {
                 using (SolidBrush b = new SolidBrush(Color))
-                    g.FillRectangle(b, X - 8, Y - 24, 16, 24);
+                    g.FillRectangle(b, X - 15, Y - 30, 30, 50);
             }
 
             // Vẽ cấp độ

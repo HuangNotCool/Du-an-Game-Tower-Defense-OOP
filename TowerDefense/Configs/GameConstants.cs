@@ -8,16 +8,15 @@ namespace TowerDefense.Configs
     // =========================================================
     public static class GameConstants
     {
-        public const int TILE_SIZE = 40;      // Kích thước ô lưới chuẩn
-        public const int HALF_TILE = 20;      // Tâm ô lưới (40/2)
+        public const int TILE_SIZE = 40;       // Kích thước ô lưới chuẩn
+        public const int HALF_TILE = 20;       // Tâm ô lưới (40/2)
         public const float DEFAULT_GAME_SPEED = 1.0f;
     }
 
     // =========================================================
-    // 2. CẤU TRÚC DỮ LIỆU (STRUCTS)
+    // 2. CẤU TRÚC DỮ LIỆU
     // =========================================================
 
-    // Cấu trúc dữ liệu cho Tháp
     public struct TowerStat
     {
         public string Name;
@@ -25,101 +24,107 @@ namespace TowerDefense.Configs
         public int Damage;
         public float Range;
         public float ReloadTime;
-        public float Cooldown; // <--- ĐÃ THÊM THUỘC TÍNH NÀY
-        public int MaxHealth;         // Máu của tháp (để quái đánh)
-        public string ProjectileType; // "Arrow", "Bomb", "Ice", "Magic", "Fire"...
-        public Color Color;           // Màu đại diện (nếu chưa có ảnh)
+        public int MaxHealth;
+        public string ProjectileType;
+        public Color Color;
+        public string BulletImage; // Tên ảnh đạn
     }
 
-    // Cấu trúc dữ liệu cho Quái
     public struct EnemyStat
     {
         public string Name;
         public int MaxHealth;
         public float Speed;
         public int Reward;
-        public int DamageToBase;  // Sát thương lên nhà chính
-        public int DamageToTower; // Sát thương lên Tháp (Mới)
-        public float AttackRange; // Tầm đánh tháp (Mới)
-        public bool CanFly;       // Quái bay (bỏ qua đường đi - nâng cao)
+        public int DamageToBase;
+        public int DamageToTower;
+        public float AttackRange;
+        public bool CanFly;
         public Color Color;
     }
 
     // =========================================================
-    // 3. DỮ LIỆU CẤU HÌNH (DATABASE)
+    // 3. DỮ LIỆU CẤU HÌNH (ĐÃ CÂN BẰNG)
     // =========================================================
     public static class GameConfig
     {
         // --- DANH SÁCH 10 LOẠI THÁP ---
         public static readonly TowerStat[] Towers = new TowerStat[]
         {
-            // ID 0: Archer (Cơ bản - Rẻ, nhanh, yếu)
-            new TowerStat { Name="Archer", Price=100, Damage=20, Range=200, ReloadTime=0.8f, MaxHealth=100, ProjectileType="Arrow", Color=Color.Blue },
+            // 1. ARCHER: Rẻ, ổn định đầu game. DPS ~31.
+            new TowerStat { Name="Archer", Price=100, Damage=25, Range=200, ReloadTime=0.8f, MaxHealth=100, ProjectileType="Arrow", Color=Color.Blue, BulletImage="Arrow" },
             
-            // ID 1: Cannon (Pháo - Đắt, chậm, nổ lan)
-            new TowerStat { Name="Cannon", Price=250, Damage=50, Range=150, ReloadTime=2.0f, MaxHealth=200, ProjectileType="Bomb", Color=Color.Black },
+            // 2. CANNON: Sát thương diện rộng (AoE), bắn chậm. DPS ~35 (nhưng trúng nhiều con).
+            new TowerStat { Name="Cannon", Price=250, Damage=70, Range=160, ReloadTime=2.0f, MaxHealth=200, ProjectileType="Bomb", Color=Color.Black, BulletImage="Bomb" },
             
-            // ID 2: Sniper (Bắn tỉa - Rất xa, rất đau, rất chậm)
-            new TowerStat { Name="Sniper", Price=400, Damage=150, Range=400, ReloadTime=3.0f, MaxHealth=50, ProjectileType="Arrow", Color=Color.ForestGreen },
+            // 3. SNIPER: Chuyên trị Boss/Quái trâu. Tầm cực xa. DPS ~100.
+            new TowerStat { Name="Sniper", Price=500, Damage=250, Range=450, ReloadTime=2.5f, MaxHealth=80, ProjectileType="MBullet", Color=Color.ForestGreen, BulletImage="MBullet" },
             
-            // ID 3: Minigun (Súng máy - Gần, cực nhanh, damage bé)
-            new TowerStat { Name="Minigun", Price=500, Damage=8, Range=120, ReloadTime=0.1f, MaxHealth=150, ProjectileType="Arrow", Color=Color.Gray },
+            // 4. MINIGUN: Máy xay thịt. Tầm ngắn nhưng bắn siêu nhanh. DPS ~180.
+            // Buff: Tăng damage từ 8 -> 18.
+            new TowerStat { Name="Minigun", Price=650, Damage=18, Range=140, ReloadTime=0.1f, MaxHealth=150, ProjectileType="Balista", Color=Color.Gray, BulletImage="Balista" },
             
-            // ID 4: Ice (Băng - Làm chậm)
-            new TowerStat { Name="Ice", Price=300, Damage=15, Range=180, ReloadTime=1.0f, MaxHealth=100, ProjectileType="Ice", Color=Color.Cyan },
+            // 5. ICE: Sát thương thấp nhưng làm chậm. Quan trọng về late game.
+            new TowerStat { Name="Ice", Price=350, Damage=20, Range=180, ReloadTime=1.0f, MaxHealth=120, ProjectileType="IceBullet", Color=Color.Cyan, BulletImage="IBullet" },
             
-            // ID 5: Magic (Phép - Xuyên giáp)
-            new TowerStat { Name="Magic", Price=600, Damage=80, Range=220, ReloadTime=1.5f, MaxHealth=80, ProjectileType="Magic", Color=Color.Purple },
+            // 6. MAGIC: Xuyên giáp/Bắn nhanh vừa phải. DPS ~80.
+            new TowerStat { Name="Magic", Price=700, Damage=120, Range=240, ReloadTime=1.5f, MaxHealth=100, ProjectileType="Poison", Color=Color.Purple, BulletImage="Poison" },
             
-            // ID 6: Bunker (Chống chịu - Máu cực trâu để chặn quái)
-            new TowerStat { Name="Bunker", Price=150, Damage=10, Range=100, ReloadTime=1.0f, MaxHealth=1000, ProjectileType="Arrow", Color=Color.DarkSlateGray },
+            // 7. BUNKER: "Cục thịt" để chặn quái, không bắn. (Nếu game bạn có logic chặn đường)
+            new TowerStat { Name="Bunker", Price=150, Damage=0, Range=0, ReloadTime=100f, MaxHealth=2000, ProjectileType="Rock", Color=Color.DarkSlateGray, BulletImage="Rock" },
             
-            // ID 7: Fire (Lửa - Thiêu đốt)
-            new TowerStat { Name="Fire", Price=450, Damage=40, Range=160, ReloadTime=1.2f, MaxHealth=120, ProjectileType="Fire", Color=Color.OrangeRed },
+            // 8. FIRE: Bắn tầm trung, tốc độ trung bình. DPS ~50.
+            new TowerStat { Name="Fire", Price=450, Damage=60, Range=170, ReloadTime=1.2f, MaxHealth=120, ProjectileType="FireBall", Color=Color.OrangeRed, BulletImage="FireBall" },
             
-            // ID 8: Rocket (Tên lửa - Tầm xa, nổ to)
-            new TowerStat { Name="Rocket", Price=800, Damage=100, Range=300, ReloadTime=2.5f, MaxHealth=150, ProjectileType="Bomb", Color=Color.DarkRed },
+            // 9. ROCKET: Phiên bản nâng cấp của Cannon. Nổ to, bắn xa. DPS ~120 (AoE).
+            new TowerStat { Name="Rocket", Price=1200, Damage=300, Range=350, ReloadTime=2.5f, MaxHealth=200, ProjectileType="jet", Color=Color.DarkRed, BulletImage="Jet" },
             
-            // ID 9: God (Thần - Siêu cấp vô địch)
-            new TowerStat { Name="God", Price=5000, Damage=500, Range=500, ReloadTime=0.5f, MaxHealth=500, ProjectileType="Magic", Color=Color.Gold },
+            // 10. GOD: Siêu cấp vũ trụ. DPS ~2000. Đắt xắt ra miếng.
+            new TowerStat { Name="God", Price=5000, Damage=1000, Range=600, ReloadTime=0.5f, MaxHealth=1000, ProjectileType="GodBullet", Color=Color.Gold, BulletImage="GodBullet" },
         };
 
-        // --- DANH SÁCH 20 LOẠI QUÁI ---
-        // --- DANH SÁCH 20 LOẠI QUÁI (ĐÃ BUFF SỨC MẠNH) ---
+        // --- DANH SÁCH QUÁI (ĐÃ GIẢM SỨC MẠNH BOSS CUỐI ĐỂ KHẢ THI HƠN) ---
         public static readonly EnemyStat[] Enemies = new EnemyStat[]
         {
-    // --- TIER 1: QUÁI YẾU (Wave 1-4) ---
-    new EnemyStat { Name="Bee", MaxHealth=50, Speed=80, Reward=5, DamageToTower=0, AttackRange=0, Color=Color.Green }, // HP 30 -> 50
-    new EnemyStat { Name="Bat", MaxHealth=40, Speed=130, Reward=5, DamageToTower=0, AttackRange=0, Color=Color.Gray },
-    new EnemyStat { Name="Cobra", MaxHealth=45, Speed=160, Reward=8, DamageToTower=0, AttackRange=0, CanFly=true, Color=Color.Black },
-    new EnemyStat { Name="Wolf", MaxHealth=150, Speed=90, Reward=15, DamageToTower=10, AttackRange=30, Color=Color.DarkGreen }, // HP 60 -> 150
-    new EnemyStat { Name="Goblin", MaxHealth=200, Speed=70, Reward=18, DamageToTower=20, AttackRange=30, Color=Color.White },
+            // --- TIER 1: QUÁI YẾU (Wave 1-4) ---
+            // Bee: Máu giấy, bay nhanh. Test độ chính xác của tháp.
+            new EnemyStat { Name="Bee", MaxHealth=40, Speed=100, Reward=5, Color=Color.Green },
+            new EnemyStat { Name="Bat", MaxHealth=50, Speed=120, Reward=6, Color=Color.Gray },
+            new EnemyStat { Name="Cobra", MaxHealth=60, Speed=140, Reward=8, CanFly=true, Color=Color.Black },
+            // Wolf: Trâu hơn chút, đi bộ.
+            new EnemyStat { Name="Wolf", MaxHealth=120, Speed=90, Reward=12, DamageToTower=10, AttackRange=30, Color=Color.DarkGreen },
+            new EnemyStat { Name="Goblin", MaxHealth=180, Speed=75, Reward=15, DamageToTower=15, AttackRange=30, Color=Color.White },
 
-    // --- TIER 2: QUÁI TRUNG BÌNH (Wave 5-9) ---
-    new EnemyStat { Name="Witch", MaxHealth=400, Speed=60, Reward=30, DamageToTower=40, AttackRange=40, Color=Color.DarkOliveGreen }, // HP 150 -> 400
-    new EnemyStat { Name="Skeleton", MaxHealth=250, Speed=140, Reward=35, DamageToTower=25, AttackRange=30, Color=Color.Gray },
-    new EnemyStat { Name="Zombie", MaxHealth=300, Speed=110, Reward=32, DamageToTower=20, AttackRange=30, Color=Color.Brown },
-    new EnemyStat { Name="Magma", MaxHealth=350, Speed=60, Reward=40, DamageToTower=0, AttackRange=0, Color=Color.LightBlue },
-    new EnemyStat { Name="Orc", MaxHealth=250, Speed=90, Reward=50, DamageToTower=50, AttackRange=150, Color=Color.Purple },
+            // --- TIER 2: QUÁI TRUNG BÌNH (Wave 5-9) ---
+            // Witch: Boss đầu game.
+            new EnemyStat { Name="Witch", MaxHealth=500, Speed=60, Reward=40, DamageToTower=30, AttackRange=40, Color=Color.DarkOliveGreen },
+            new EnemyStat { Name="Skeleton", MaxHealth=250, Speed=110, Reward=20, DamageToTower=20, AttackRange=30, Color=Color.Gray },
+            new EnemyStat { Name="Zombie", MaxHealth=350, Speed=80, Reward=22, DamageToTower=25, AttackRange=30, Color=Color.Brown },
+            new EnemyStat { Name="Magma", MaxHealth=400, Speed=50, Reward=25, Color=Color.LightBlue },
+            // Orc: Damage to tower cao, cần diệt sớm.
+            new EnemyStat { Name="Orc", MaxHealth=300, Speed=85, Reward=30, DamageToTower=60, AttackRange=100, Color=Color.Purple },
 
-    // --- TIER 3: QUÁI MẠNH (Wave 10-14) ---
-    new EnemyStat { Name="Golem", MaxHealth=1500, Speed=45, Reward=80, DamageToTower=100, AttackRange=50, Color=Color.DarkCyan }, // Tanker hồi máu
-    new EnemyStat { Name="Gargoyle", MaxHealth=800, Speed=120, Reward=90, DamageToTower=60, AttackRange=40, CanFly=true, Color=Color.DarkSlateBlue },
-    new EnemyStat { Name="Vampire", MaxHealth=1000, Speed=130, Reward=100, DamageToTower=60, AttackRange=40, Color=Color.Red },
-    new EnemyStat { Name="Dragon", MaxHealth=3000, Speed=35, Reward=150, DamageToTower=200, AttackRange=40, Color=Color.SandyBrown }, // Kẻ hủy diệt tháp
-    new EnemyStat { Name="Spiderling", MaxHealth=600, Speed=220, Reward=120, DamageToTower=80, AttackRange=30, Color=Color.Black }, // Chạy cực nhanh
+            // --- TIER 3: QUÁI MẠNH (Wave 10-14) ---
+            // Golem: Tanker siêu cứng. Cần Sniper hoặc Magic.
+            new EnemyStat { Name="Golem", MaxHealth=2000, Speed=40, Reward=80, DamageToTower=80, AttackRange=50, Color=Color.DarkCyan },
+            new EnemyStat { Name="Gargoyle", MaxHealth=900, Speed=130, Reward=60, DamageToTower=50, AttackRange=40, CanFly=true, Color=Color.DarkSlateBlue },
+            new EnemyStat { Name="Vampire", MaxHealth=1200, Speed=140, Reward=70, DamageToTower=50, AttackRange=40, Color=Color.Red },
+            // Dragon: Mini-boss bay.
+            new EnemyStat { Name="Dragon", MaxHealth=4000, Speed=45, Reward=150, DamageToTower=150, AttackRange=60, Color=Color.SandyBrown }, 
+            // Spiderling: Chạy siêu nhanh (Zerg rush). Cần Minigun hoặc Ice.
+            new EnemyStat { Name="Spiderling", MaxHealth=600, Speed=200, Reward=50, DamageToTower=40, AttackRange=30, Color=Color.Black }, 
 
-    // --- TIER 4: BOSS & SIÊU QUÁI (Wave 15+) ---
-    // Cyclops (Mini Boss)
-    new EnemyStat { Name="Cyclops", MaxHealth=8000, Speed=55, Reward=300, DamageToTower=300, AttackRange=80, Color=Color.DarkOrange }, 
-    // Hydra (Hồi máu)
-    new EnemyStat { Name="Treant", MaxHealth=12000, Speed=45, Reward=500, DamageToTower=200, AttackRange=120, Color=Color.DarkGreen }, 
-    // Phoenix (Bay & Nhanh)
-    new EnemyStat { Name="Phoenix", MaxHealth=6000, Speed=180, Reward=600, DamageToTower=150, AttackRange=150, CanFly=true, Color=Color.OrangeRed }, 
-    // Titan (One-hit Tháp)
-    new EnemyStat { Name="Titan", MaxHealth=20000, Speed=25, Reward=1000, DamageToTower=1000, AttackRange=80, Color=Color.DarkBlue }, 
-    // FINAL BOSS
-    new EnemyStat { Name="Dragon King", MaxHealth=50000, Speed=70, Reward=5000, DamageToTower=500, AttackRange=250, Color=Color.Crimson },
+            // --- TIER 4: BOSS & SIÊU QUÁI (Wave 15+) ---
+            // Cyclops
+            new EnemyStat { Name="Cyclops", MaxHealth=8000, Speed=50, Reward=300, DamageToTower=200, AttackRange=80, Color=Color.DarkOrange }, 
+            // Treant: Máu rất trâu.
+            new EnemyStat { Name="Treant", MaxHealth=15000, Speed=35, Reward=500, DamageToTower=150, AttackRange=100, Color=Color.DarkGreen }, 
+            // Phoenix: Bay nhanh + Máu trâu. Cực nguy hiểm.
+            new EnemyStat { Name="Phoenix", MaxHealth=7000, Speed=180, Reward=600, DamageToTower=120, AttackRange=150, CanFly=true, Color=Color.OrangeRed }, 
+            // Titan: One-hit trụ.
+            new EnemyStat { Name="Titan", MaxHealth=25000, Speed=30, Reward=1000, DamageToTower=800, AttackRange=80, Color=Color.DarkBlue }, 
+            // FINAL BOSS: Dragon King. (Giảm từ 50k xuống 40k để khả thi hơn)
+            new EnemyStat { Name="Dragon King", MaxHealth=40000, Speed=60, Reward=5000, DamageToTower=400, AttackRange=200, Color=Color.Crimson },
         };
     }
 }

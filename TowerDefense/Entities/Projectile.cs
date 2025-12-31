@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using TowerDefense.Entities.Enemies;
-using TowerDefense.Entities.Towers;
 using TowerDefense.Managers;
 
 namespace TowerDefense.Entities
@@ -18,16 +17,22 @@ namespace TowerDefense.Entities
         private int _damage;
         private float _speed;
         private ProjectileType _type;
-        private float _aoeRadius; // Bán kính nổ (nếu là Missile)
+        private float _aoeRadius; // Bán kính nổ
 
-        public Projectile(float x, float y, Enemy target, int damage, float speed, ProjectileType type, float aoeRadius = 0)
+        // Biến lưu tên ảnh đạn
+        private string _textureKey;
+
+        // Constructor mới nhận thêm textureKey
+        public Projectile(float x, float y, Enemy target, int damage, float speed, ProjectileType type, float aoeRadius = 0, string textureKey = "Arrow")
         {
-            X = x; Y = y;
+            X = x;
+            Y = y;
             _target = target;
             _damage = damage;
             _speed = speed;
             _type = type;
             _aoeRadius = aoeRadius;
+            _textureKey = textureKey; // Lưu lại để dùng khi Render
         }
 
         public void Update(float deltaTime)
@@ -38,15 +43,15 @@ namespace TowerDefense.Entities
                 return;
             }
 
-            // Hướng bay
+            // Tính hướng bay
             float dx = _target.X - X;
             float dy = _target.Y - Y;
             float dist = (float)Math.Sqrt(dx * dx + dy * dy);
 
-            // Tốc độ bay
+            // Tốc độ bay trong frame này
             float move = _speed * deltaTime;
 
-            // Nếu chạm mục tiêu
+            // Kiểm tra va chạm
             if (dist <= move)
             {
                 HitTarget();
@@ -61,23 +66,20 @@ namespace TowerDefense.Entities
         private void HitTarget()
         {
             IsActive = false;
-
             if (_target != null && _target.IsActive)
             {
                 if (_type == ProjectileType.Missile)
                 {
-                    // --- FIX LỖI TẠI ĐÂY: Truyền bán kính nổ (aoeRadius) thay vì Color ---
-                    // Tham số: X, Y, Radius
+                    // Nổ lan
                     GameManager.Instance.CreateExplosion(X, Y, _aoeRadius > 0 ? _aoeRadius : 60f);
-
-                    // Gây dame lan
                     ApplyAreaDamage(X, Y, _aoeRadius > 0 ? _aoeRadius : 60f, _damage);
                 }
                 else if (_type == ProjectileType.Ice)
                 {
+                    // Hiệu ứng băng
                     GameManager.Instance.CreateIceEffect(X, Y);
                     _target.TakeDamage(_damage);
-                    _target.ApplySlow(2.0f, 0.5f); // Làm chậm 50% trong 2s
+                    _target.ApplySlow(2.0f, 0.5f); // Làm chậm 50%
                 }
                 else
                 {
@@ -90,7 +92,6 @@ namespace TowerDefense.Entities
 
         private void ApplyAreaDamage(float x, float y, float radius, int damage)
         {
-            // Tìm tất cả quái trong vùng nổ
             foreach (var enemy in GameManager.Instance.Enemies)
             {
                 float dx = enemy.X - x;
@@ -104,17 +105,30 @@ namespace TowerDefense.Entities
 
         public void Render(Graphics g)
         {
-            float size = 6;
-            Brush brush = Brushes.Yellow;
+            if (!IsActive) return;
 
-            switch (_type)
+            // 1. Xác định tên ảnh từ biến đã lưu
+            string imageKey = string.IsNullOrEmpty(_textureKey) ? "Arrow" : _textureKey;
+
+            // 2. Tinh chỉnh kích thước hiển thị dựa trên tên ảnh
+            float size = 20;
+            if (imageKey == "Bomb") size = 24;
+            else if (imageKey == "Jet") size = 30;
+            else if (imageKey == "MBullet") size = 22;
+
+            // 3. Lấy ảnh và vẽ
+            Image projImg = ResourceManager.GetImage(imageKey);
+
+            if (projImg != null)
             {
-                case ProjectileType.Missile: brush = Brushes.OrangeRed; size = 8; break;
-                case ProjectileType.Ice: brush = Brushes.Cyan; size = 6; break;
-                case ProjectileType.Laser: brush = Brushes.Lime; size = 4; break;
+                g.DrawImage(projImg, X - size / 2, Y - size / 2, size, size);
             }
-
-            g.FillEllipse(brush, X - size / 2, Y - size / 2, size, size);
+            else
+            {
+                // Fallback: Vẽ chấm màu nếu không tìm thấy ảnh
+                using (SolidBrush b = new SolidBrush(Color.Yellow))
+                    g.FillEllipse(b, X - 5, Y - 5, 10, 10);
+            }
         }
     }
 }
