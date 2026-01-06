@@ -28,6 +28,7 @@ namespace TowerDefense.Entities.Enemies
         private float _attackCooldownTimer = 0f;
         private const float ATTACK_COOLDOWN = 1.5f;
 
+
         public Enemy(List<Point> path, int enemyTypeId)
         {
             if (enemyTypeId < 0 || enemyTypeId >= GameConfig.Enemies.Length) enemyTypeId = 0;
