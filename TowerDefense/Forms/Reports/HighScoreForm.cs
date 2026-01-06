@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using TowerDefense.Managers;
-using TowerDefense.Utils; // Để dùng GameButton
+using TowerDefense.Utils;
 
 namespace TowerDefense.Forms.Reports
 {
@@ -13,14 +13,8 @@ namespace TowerDefense.Forms.Reports
 
         public HighScoreForm()
         {
-            // 1. Gọi hàm của Visual Studio (trong Designer.cs)
-            // Dòng này bắt buộc phải có để khởi tạo Form
             InitializeComponent();
-
-            // 2. Thiết lập giao diện tùy chỉnh của chúng ta
             SetupUI();
-
-            // 3. Tải dữ liệu
             LoadData();
         }
 
@@ -87,12 +81,14 @@ namespace TowerDefense.Forms.Reports
             _grid.DefaultCellStyle.SelectionForeColor = Color.White;
             _grid.RowTemplate.Height = 35;
 
-            // Cột
-            _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "RANK", Width = 60, DataPropertyName = "Rank" });
-            _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "PLAYER NAME", Width = 180, DataPropertyName = "Name" });
-            _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "SCORE", Width = 100, DataPropertyName = "Score" });
-            _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "DATE", Width = 95, DataPropertyName = "Date" });
+            // --- ĐÃ SỬA: BỎ CỘT DATE VÀ TĂNG ĐỘ RỘNG CÁC CỘT KHÁC ---
+            // Tổng chiều rộng grid là 435 (trừ scrollbar ~20 còn khoảng 415)
+            _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "RANK", Width = 70, DataPropertyName = "Rank" });
+            _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "PLAYER NAME", Width = 230, DataPropertyName = "Name" }); // Tăng từ 180 lên 230
+            _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "SCORE", Width = 115, DataPropertyName = "Score" });
+            // Đã xóa dòng add cột DATE
 
+            // Căn giữa Rank và Căn phải Score
             _grid.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             _grid.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
@@ -118,6 +114,22 @@ namespace TowerDefense.Forms.Reports
         {
             var scores = HighScoreManager.LoadScores();
 
+            // Fake data nếu chưa có file save (để test hiển thị)
+            if (scores.Count == 0)
+            {
+                scores = new System.Collections.Generic.List<PlayerScore>
+                {
+                    new PlayerScore { Name = "The Legend", Score = 10000 },
+                    new PlayerScore { Name = "Dragon Slayer", Score = 8500 },
+                    new PlayerScore { Name = "Tower King", Score = 7200 },
+                    new PlayerScore { Name = "Pro Gamer", Score = 6000 },
+                    new PlayerScore { Name = "Rookie 01", Score = 4500 },
+                    new PlayerScore { Name = "NoobMaster", Score = 3000 },
+                    new PlayerScore { Name = "Guest User", Score = 1500 },
+                };
+            }
+
+            // Chuyển đổi dữ liệu hiển thị
             var displayList = new System.Collections.Generic.List<object>();
 
             for (int i = 0; i < scores.Count; i++)
@@ -126,8 +138,8 @@ namespace TowerDefense.Forms.Reports
                 {
                     Rank = i + 1,
                     Name = scores[i].Name,
-                    Score = scores[i].Score,
-                    Date = scores[i].Date
+                    Score = scores[i].Score
+                    // Đã xóa dòng Date = scores[i].Date
                 });
             }
 

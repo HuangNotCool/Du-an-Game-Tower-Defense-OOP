@@ -1,70 +1,93 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using TowerDefense.Forms.GameLevels;
-using TowerDefense.Utils; // Để dùng GameButton
+using TowerDefense.Utils;
 
 namespace TowerDefense.Forms
 {
     public partial class LevelSelectForm : Form
     {
-        private FlowLayoutPanel _pnlLevels; // Panel chứa danh sách nút
+        private FlowLayoutPanel _pnlLevels;
+        private PictureBox _bgContainer;
+
+        // --- BÍ KÍP CHỐNG NHÁY/ĐEN MÀN HÌNH ---
+        // Ép hệ thống vẽ chồng lớp (Composited) để xử lý ảnh động mượt mà
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // WS_EX_COMPOSITED
+                return cp;
+            }
+        }
 
         public LevelSelectForm()
         {
-            // 1. Cấu hình Form
             this.Text = "SELECT BATTLEFIELD";
-            this.Size = new Size(850, 600); // Form to hơn để chứa đủ 10 nút
+            this.Size = new Size(850, 600);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+
+            // Đặt màu nền trùng màu tối để nếu ảnh chưa load kịp thì không bị trắng xóa
             this.BackColor = Color.FromArgb(30, 30, 40);
 
-            InitializeComponent(); // Nếu dùng Designer (hoặc bỏ qua)
+            InitializeComponent();
             SetupUI();
         }
 
         private void SetupUI()
         {
-            // Nền Gradient
-            this.Paint += (s, e) => {
-                using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
-                       Color.FromArgb(40, 40, 60), Color.FromArgb(10, 10, 20), 90F))
-                {
-                    e.Graphics.FillRectangle(brush, this.ClientRectangle);
-                }
-            };
+            // 1. TẠO NỀN GIF
+            _bgContainer = new PictureBox();
+            _bgContainer.Dock = DockStyle.Fill;
+            _bgContainer.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            // Tiêu đề
+            // Đường dẫn ảnh
+            string gifPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Assets\Images\level_select_bg.gif");
+
+            if (System.IO.File.Exists(gifPath))
+            {
+                _bgContainer.Image = Image.FromFile(gifPath);
+            }
+            else
+            {
+                _bgContainer.BackColor = Color.FromArgb(30, 30, 40);
+            }
+
+            this.Controls.Add(_bgContainer);
+
+            // 2. TIÊU ĐỀ
             Label lbl = new Label
             {
                 Text = "CAMPAIGN MAP",
-                Font = new Font("Arial", 24, FontStyle.Bold),
+                Font = new Font("Arial", 28, FontStyle.Bold),
                 ForeColor = Color.Gold,
                 AutoSize = true,
-                Location = new Point(300, 20),
+                Location = new Point(280, 20),
                 BackColor = Color.Transparent
             };
-            this.Controls.Add(lbl);
+            _bgContainer.Controls.Add(lbl); // <--- Add vào BG
 
-            // Container chứa nút (Tự động xuống dòng)
+            // 3. CONTAINER CHỨA NÚT
             _pnlLevels = new FlowLayoutPanel
             {
-                Location = new Point(50, 80),
-                Size = new Size(750, 400),
-                BackColor = Color.Transparent,
+                Location = new Point(50, 90),
+                Size = new Size(760, 400),
+                // Mẹo: Nếu Transparent vẫn bị lỗi đen, hãy đổi thành màu đen mờ (Alpha thấp)
+                BackColor = Color.FromArgb(100, 0, 0, 0),
                 AutoScroll = true
             };
-            this.Controls.Add(_pnlLevels);
+            _bgContainer.Controls.Add(_pnlLevels); // <--- Add vào BG
 
-            // --- TẠO TỰ ĐỘNG 10 LEVEL BUTTONS ---
             for (int i = 1; i <= 10; i++)
             {
                 CreateLevelButton(i);
             }
 
-            // Nút Back
+            // 4. NÚT BACK
             GameButton btnBack = new GameButton
             {
                 Text = "BACK TO MENU",
@@ -74,13 +97,12 @@ namespace TowerDefense.Forms
                 Color2 = Color.Black
             };
             btnBack.Click += (s, e) => this.Close();
-            this.Controls.Add(btnBack);
+            _bgContainer.Controls.Add(btnBack); // <--- Add vào BG
         }
 
         private void CreateLevelButton(int id)
         {
-            // Xác định màu sắc theo độ khó
-            Color baseColor = Color.LightGreen; // Dễ (1-3)
+            Color baseColor = Color.LightGreen;
             string difficulty = "Easy";
 
             if (id >= 4 && id <= 6) { baseColor = Color.Orange; difficulty = "Normal"; }
@@ -95,11 +117,10 @@ namespace TowerDefense.Forms
                 Color2 = baseColor,
                 BorderRadius = 20,
                 Font = new Font("Arial", 10, FontStyle.Bold),
-                Margin = new Padding(10) // Khoảng cách giữa các nút
+                Margin = new Padding(10)
             };
 
             btn.Click += (s, e) => OpenGameLevel(id);
-
             _pnlLevels.Controls.Add(btn);
         }
 

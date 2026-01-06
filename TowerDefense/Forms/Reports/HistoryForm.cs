@@ -117,8 +117,39 @@ namespace TowerDefense.Forms.Reports
 
         private void LoadData()
         {
+            // 1. Cố gắng tải dữ liệu thật
             var logs = HistoryManager.LoadLogs();
+
+            // 2. --- TẠO DỮ LIỆU MẪU NẾU KHÔNG CÓ FILE SAVE ---
+            if (logs.Count == 0)
+            {
+                logs = new System.Collections.Generic.List<MatchLog>
+                {
+                    // Mẫu: Thắng (Full 20 wave)
+                    new MatchLog { Date = "06/01/2026 16:30", MapName = "Level 1 - Grass", Result = "VICTORY", WaveReached = 20 },
+                    
+                    // Mẫu: Thua (Chết ở wave 14)
+                    new MatchLog { Date = "06/01/2026 15:45", MapName = "Level 4 - Sand", Result = "DEFEAT", WaveReached = 14 },
+                    
+                    // Mẫu: Thắng map khó
+                    new MatchLog { Date = "05/01/2026 20:10", MapName = "Level 7 - Snow", Result = "VICTORY", WaveReached = 20 },
+                    
+                    // Mẫu: Thua map cuối (Boss)
+                    new MatchLog { Date = "05/01/2026 19:00", MapName = "Level 10 - Lava", Result = "DEFEAT", WaveReached = 19 },
+                    
+                    // Các mẫu khác để test cuộn trang
+                    new MatchLog { Date = "04/01/2026 10:20", MapName = "Level 2 - Grass", Result = "VICTORY", WaveReached = 20 },
+                    new MatchLog { Date = "04/01/2026 09:15", MapName = "Level 5 - Sand", Result = "DEFEAT", WaveReached = 8 },
+                    new MatchLog { Date = "03/01/2026 22:00", MapName = "Level 3 - Grass", Result = "VICTORY", WaveReached = 20 },
+                    new MatchLog { Date = "03/01/2026 14:30", MapName = "Level 8 - Snow", Result = "DEFEAT", WaveReached = 5 },
+                };
+            }
+            // ------------------------------------------------
+
+            // 3. Đảo ngược để trận mới nhất lên đầu
             logs.Reverse();
+
+            // 4. Đẩy vào Grid
             _grid.DataSource = logs;
         }
 
